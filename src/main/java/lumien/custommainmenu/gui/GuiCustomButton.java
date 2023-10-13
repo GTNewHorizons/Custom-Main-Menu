@@ -13,6 +13,7 @@ import net.minecraft.util.ResourceLocation;
 
 import lumien.custommainmenu.configuration.elements.Button;
 import lumien.custommainmenu.lib.StringReplacer;
+import lumien.custommainmenu.lib.texts.TextString;
 import lumien.custommainmenu.lib.textures.ITexture;
 import lumien.custommainmenu.util.GlStateManager;
 import lumien.custommainmenu.util.LogicUtil;
@@ -27,17 +28,13 @@ public class GuiCustomButton extends GuiButton {
     boolean hovered;
 
     public GuiCustomButton(int buttonId, Button b) {
-        super(
-                buttonId,
-                b.posX,
-                b.posY,
-                b.width,
-                b.height,
-                I18n.format((String) b.text.get(), (Object[]) new Object[0]));
+        super(buttonId, b.posX, b.posY, b.width, b.height, b.text.get());
         this.texture = b.texture;
         this.normalText = b.normalTextColor;
         this.hoverText = b.hoverTextColor;
         this.b = b;
+        this.b.text = new TextString(I18n.format(StringReplacer.replacePlaceholders(b.text.get())));
+        this.b.hoverText = new TextString(I18n.format(StringReplacer.replacePlaceholders(b.hoverText.get())));
     }
 
     public void drawTooltip(Minecraft mc, int mouseX, int mouseY) {
@@ -112,18 +109,23 @@ public class GuiCustomButton extends GuiButton {
             }
             this.drawCenteredString(
                     fontrenderer,
-                    this.hovered
-                            ? I18n.format(
-                                    (String) StringReplacer.replacePlaceholders(this.b.hoverText.get()),
-                                    (Object[]) new Object[0])
-                            : I18n.format(
-                                    (String) StringReplacer.replacePlaceholders(this.b.text.get()),
-                                    (Object[]) new Object[0]),
+                    this.getDrawString(),
                     this.xPosition + this.width / 2,
                     this.yPosition + (this.height - 8) / 2,
                     l,
                     this.b.shadow);
         }
+    }
+
+    private String getDrawString() {
+        String text = this.hovered ? this.b.hoverText.get() : this.b.text.get();
+
+        for (String dynamicPlaceholder : StringReplacer.dynamicPlaceholders) {
+            if (text.contains(dynamicPlaceholder)) {
+                return StringReplacer.replaceDynamicPlaceholders(text);
+            }
+        }
+        return text;
     }
 
     protected void drawHoveringText(Minecraft mc, List<String> textLines, int x, int y, FontRenderer font) {
