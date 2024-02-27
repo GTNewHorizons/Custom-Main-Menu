@@ -19,12 +19,11 @@ import lumien.custommainmenu.configuration.Config;
 import lumien.custommainmenu.configuration.ConfigurationLoader;
 import lumien.custommainmenu.handler.CMMEventHandler;
 
-@Mod(modid = CustomMainMenu.MOD_ID, name = CustomMainMenu.MOD_NAME, version = CustomMainMenu.MOD_VERSION)
+@Mod(modid = CustomMainMenu.MOD_ID, name = CustomMainMenu.MOD_NAME, version = Tags.VERSION)
 public class CustomMainMenu {
 
     public static final String MOD_ID = "custommainmenu";
     public static final String MOD_NAME = "Custom Main Menu";
-    public static final String MOD_VERSION = "GRADLETOKEN_VERSION";
 
     @Mod.Instance(value = CustomMainMenu.MOD_ID)
     public static CustomMainMenu INSTANCE;
