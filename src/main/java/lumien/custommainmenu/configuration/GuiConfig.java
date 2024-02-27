@@ -376,7 +376,7 @@ public class GuiConfig {
 
     public static ITexture getWantedTexture(String textureString) {
         if (textureString.startsWith("web:")) {
-            String url = textureString.substring(4, textureString.length());
+            String url = textureString.substring(4);
             return new TextureURL(url);
         }
         return new TextureResourceLocation(textureString);
@@ -419,11 +419,11 @@ public class GuiConfig {
 
     public static IText getWantedText(String textString) {
         if (textString.startsWith("web:")) {
-            String url = textString.substring(4, textString.length());
+            String url = textString.substring(4);
             return new TextURL(url);
         }
         if (textString.startsWith("file:")) {
-            String resource = textString.substring(5, textString.length());
+            String resource = textString.substring(5);
             return new TextResourceLocation(resource);
         }
         return new TextString(textString);
