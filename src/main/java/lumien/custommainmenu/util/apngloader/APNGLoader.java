@@ -297,11 +297,11 @@ public class APNGLoader {
 
     private static int loadImageData(APNGImage apngImage, Frame frame, byte[] imageData) {
         int textureID = GL11.glGenTextures();
-        GL11.glBindTexture((int) 3553, (int) textureID);
-        GL11.glTexParameteri((int) 3553, (int) 10242, (int) 10497);
-        GL11.glTexParameteri((int) 3553, (int) 10243, (int) 10497);
-        GL11.glTexParameteri((int) 3553, (int) 10240, (int) 9728);
-        GL11.glTexParameteri((int) 3553, (int) 10241, (int) 9728);
+        GL11.glBindTexture((int) GL11.GL_TEXTURE_2D, (int) textureID);
+        GL11.glTexParameteri((int) GL11.GL_TEXTURE_2D, (int) GL11.GL_TEXTURE_WRAP_S, (int) GL11.GL_REPEAT);
+        GL11.glTexParameteri((int) GL11.GL_TEXTURE_2D, (int) GL11.GL_TEXTURE_WRAP_T, (int) GL11.GL_REPEAT);
+        GL11.glTexParameteri((int) GL11.GL_TEXTURE_2D, (int) GL11.GL_TEXTURE_MAG_FILTER, (int) GL11.GL_NEAREST);
+        GL11.glTexParameteri((int) GL11.GL_TEXTURE_2D, (int) GL11.GL_TEXTURE_MIN_FILTER, (int) GL11.GL_NEAREST);
         if (apngImage.getColorType() == 6) {
             GL11.glTexImage2D(
                     (int) 3553,

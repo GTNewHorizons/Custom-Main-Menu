@@ -192,7 +192,7 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
                 this.drawGradientRect(0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
             }
         } else {
-            GL11.glBegin((int) 7);
+            GL11.glBegin((int) GL11.GL_QUADS);
             GL11.glColor3f((float) 0.0f, (float) 0.0f, (float) 0.0f);
             GL11.glVertex3f((float) 0.0f, (float) 0.0f, (float) 0.0f);
             GL11.glColor3f((float) 0.0f, (float) 0.0f, (float) 0.0f);
@@ -263,8 +263,8 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
                     0.0f);
             GlStateManager.rotate(-20.0f, 0.0f, 0.0f, 1.0f);
             float f1 = 1.8f - MathHelper.abs(
-                    (float) (MathHelper
-                            .sin((float) ((float) (Minecraft.getSystemTime() % 1000L) / 1000.0f * 3.1415927f * 2.0f))
+                    (float) (MathHelper.sin(
+                            (float) ((float) (Minecraft.getSystemTime() % 1000L) / 1000.0f * (float) Math.PI * 2.0f))
                             * 0.1f));
             f1 = f1 * 100.0f / (float) (this.fontRenderer.getStringWidth(this.splashText) + 32);
             GlStateManager.scale(f1, f1, f1);
@@ -288,8 +288,8 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
     }
 
     private void drawBackground(Background.MODE mode) {
-        int imageWidth = GL11.glGetTexLevelParameteri((int) 3553, (int) 0, (int) 4096);
-        int imageHeight = GL11.glGetTexLevelParameteri((int) 3553, (int) 0, (int) 4097);
+        int imageWidth = GL11.glGetTexLevelParameteri((int) GL11.GL_TEXTURE_2D, (int) 0, (int) GL11.GL_TEXTURE_WIDTH);
+        int imageHeight = GL11.glGetTexLevelParameteri((int) GL11.GL_TEXTURE_2D, (int) 0, (int) GL11.GL_TEXTURE_HEIGHT);
         int drawWidth = 0;
         int drawHeight = 0;
         float factorWidth = (float) this.width / (float) imageWidth;
@@ -475,9 +475,17 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
 
     private void rotateAndBlurSkybox(float p_73968_1_) {
         this.mc.getTextureManager().bindTexture(this.field_110351_G);
-        GL11.glTexParameteri((int) 3553, (int) 10241, (int) 9729);
-        GL11.glTexParameteri((int) 3553, (int) 10240, (int) 9729);
-        GL11.glCopyTexSubImage2D((int) 3553, (int) 0, (int) 0, (int) 0, (int) 0, (int) 0, (int) 256, (int) 256);
+        GL11.glTexParameteri((int) GL11.GL_TEXTURE_2D, (int) GL11.GL_TEXTURE_MIN_FILTER, (int) GL11.GL_LINEAR);
+        GL11.glTexParameteri((int) GL11.GL_TEXTURE_2D, (int) GL11.GL_TEXTURE_MAG_FILTER, (int) GL11.GL_LINEAR);
+        GL11.glCopyTexSubImage2D(
+                (int) GL11.GL_TEXTURE_2D,
+                (int) 0,
+                (int) 0,
+                (int) 0,
+                (int) 0,
+                (int) 0,
+                (int) 256,
+                (int) 256);
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         GlStateManager.colorMask(true, true, true, false);

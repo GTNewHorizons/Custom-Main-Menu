@@ -20,7 +20,7 @@ public class APNGImage {
 
     public void draw(int x, int y, int width, int height) {
         Frame currentFrame = this.frames[(int) (System.currentTimeMillis() / 100L % (long) this.frames.length)];
-        GL11.glBindTexture((int) 3553, (int) currentFrame.textureID);
+        GL11.glBindTexture((int) GL11.GL_TEXTURE_2D, (int) currentFrame.textureID);
     }
 
     public void setPalette(Triple[] palette) {

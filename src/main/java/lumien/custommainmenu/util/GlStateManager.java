@@ -43,11 +43,11 @@ public class GlStateManager {
     }
 
     public static void disableAlpha() {
-        GL11.glDisable((int) 3008);
+        GL11.glDisable((int) GL11.GL_ALPHA_TEST);
     }
 
     public static void enableAlpha() {
-        GL11.glEnable((int) 3008);
+        GL11.glEnable((int) GL11.GL_ALPHA_TEST);
     }
 
     public static void alphaFunc(int p_179092_0_, float p_179092_1_) {
@@ -55,19 +55,19 @@ public class GlStateManager {
     }
 
     public static void enableLighting() {
-        GL11.glEnable((int) 2896);
+        GL11.glEnable((int) GL11.GL_LIGHTING);
     }
 
     public static void disableLighting() {
-        GL11.glDisable((int) 2896);
+        GL11.glDisable((int) GL11.GL_LIGHTING);
     }
 
     public static void disableDepth() {
-        GL11.glDisable((int) 2929);
+        GL11.glDisable((int) GL11.GL_DEPTH_TEST);
     }
 
     public static void enableDepth() {
-        GL11.glEnable((int) 2929);
+        GL11.glEnable((int) GL11.GL_DEPTH_TEST);
     }
 
     public static void depthFunc(int p_179143_0_) {
@@ -79,11 +79,11 @@ public class GlStateManager {
     }
 
     public static void disableBlend() {
-        GL11.glDisable((int) 3042);
+        GL11.glDisable((int) GL11.GL_BLEND);
     }
 
     public static void enableBlend() {
-        GL11.glEnable((int) 3042);
+        GL11.glEnable((int) GL11.GL_BLEND);
     }
 
     public static void blendFunc(int p_179112_0_, int p_179112_1_) {
@@ -95,11 +95,11 @@ public class GlStateManager {
     }
 
     public static void enableCull() {
-        GL11.glEnable((int) 2884);
+        GL11.glEnable((int) GL11.GL_CULL_FACE);
     }
 
     public static void disableCull() {
-        GL11.glDisable((int) 2884);
+        GL11.glDisable((int) GL11.GL_CULL_FACE);
     }
 
     public static void cullFace(int p_179107_0_) {
@@ -111,11 +111,11 @@ public class GlStateManager {
     }
 
     public static void enableTexture2D() {
-        GL11.glEnable((int) 3553);
+        GL11.glEnable((int) GL11.GL_TEXTURE_2D);
     }
 
     public static void disableTexture2D() {
-        GL11.glDisable((int) 3553);
+        GL11.glDisable((int) GL11.GL_TEXTURE_2D);
     }
 
     public static int generateTexture() {
@@ -123,15 +123,15 @@ public class GlStateManager {
     }
 
     public static void bindTexture(int p_179144_0_) {
-        GL11.glBindTexture((int) 3553, (int) p_179144_0_);
+        GL11.glBindTexture((int) GL11.GL_TEXTURE_2D, (int) p_179144_0_);
     }
 
     public static void enableNormalize() {
-        GL11.glEnable((int) 2977);
+        GL11.glEnable((int) GL11.GL_NORMALIZE);
     }
 
     public static void disableNormalize() {
-        GL11.glDisable((int) 2977);
+        GL11.glDisable((int) GL11.GL_NORMALIZE);
     }
 
     public static void shadeModel(int p_179103_0_) {
