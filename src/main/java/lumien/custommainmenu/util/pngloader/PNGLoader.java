@@ -117,7 +117,6 @@ public class PNGLoader {
         for (int y = 0; y < pngImage.height; ++y) {
             try {
                 inflater.inflate(inflated[y]);
-                continue;
             } catch (DataFormatException e) {
                 e.printStackTrace();
             }

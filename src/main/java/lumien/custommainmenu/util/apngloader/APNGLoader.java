@@ -190,7 +190,6 @@ public class APNGLoader {
         for (int y = 0; y < frame.height; ++y) {
             try {
                 inflater.inflate(inflated[y]);
-                continue;
             } catch (DataFormatException e) {
                 e.printStackTrace();
             }
