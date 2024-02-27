@@ -145,12 +145,12 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
             String link = null;
             if (this.beingChecked instanceof Button) {
                 Button button = (Button) this.beingChecked;
-                if (button.action != null && button.action instanceof ActionOpenLink) {
+                if (button.action instanceof ActionOpenLink) {
                     link = ((ActionOpenLink) button.action).getLink();
                 }
             } else if (this.beingChecked instanceof Text) {
                 Text text = (Text) this.beingChecked;
-                if (text.action != null && text.action instanceof ActionOpenLink) {
+                if (text.action instanceof ActionOpenLink) {
                     link = ((ActionOpenLink) text.action).getLink();
                 }
             }
