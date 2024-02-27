@@ -214,24 +214,24 @@ public class APNGLoader {
                 switch (filter) {
                     case 0: {
                         inflated[line][t] = (byte) data;
-                        continue block16;
+                        continue;
                     }
                     case 1: {
                         inflated[line][t] = (byte) (a + data);
-                        continue block16;
+                        continue;
                     }
                     case 2: {
                         inflated[line][t] = (byte) (b + data);
-                        continue block16;
+                        continue;
                     }
                     case 3: {
                         inflated[line][t] = (byte) (data + APNGLoader.getMean(a, b));
-                        continue block16;
+                        continue;
                     }
                     case 4: {
                         int path = APNGLoader.paethPredictor(a, b, c);
                         inflated[line][t] = (byte) (data + path);
-                        continue block16;
+                        continue;
                     }
                     default: {
                         System.out.println(filter);
@@ -322,42 +322,42 @@ public class APNGLoader {
             byte b = magic[byteIndex];
             switch (byteIndex) {
                 case 0: {
-                    if (b == -119) continue block10;
+                    if (b == -119) continue;
                     isPNG = false;
-                    continue block10;
+                    continue;
                 }
                 case 1: {
-                    if (b == 80) continue block10;
+                    if (b == 80) continue;
                     isPNG = false;
-                    continue block10;
+                    continue;
                 }
                 case 2: {
-                    if (b == 78) continue block10;
+                    if (b == 78) continue;
                     isPNG = false;
-                    continue block10;
+                    continue;
                 }
                 case 3: {
-                    if (b == 71) continue block10;
+                    if (b == 71) continue;
                     isPNG = false;
-                    continue block10;
+                    continue;
                 }
                 case 4: {
-                    if (b == 13) continue block10;
+                    if (b == 13) continue;
                     isPNG = false;
-                    continue block10;
+                    continue;
                 }
                 case 5: {
-                    if (b == 10) continue block10;
+                    if (b == 10) continue;
                     isPNG = false;
-                    continue block10;
+                    continue;
                 }
                 case 6: {
-                    if (b == 26) continue block10;
+                    if (b == 26) continue;
                     isPNG = false;
-                    continue block10;
+                    continue;
                 }
                 case 7: {
-                    if (b == 10) continue block10;
+                    if (b == 10) continue;
                     isPNG = false;
                 }
             }
