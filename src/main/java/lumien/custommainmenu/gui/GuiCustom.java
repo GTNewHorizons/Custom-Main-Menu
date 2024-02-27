@@ -157,7 +157,7 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
             if (link != null) {
                 try {
                     Class<?> oclass = Class.forName("java.awt.Desktop");
-                    Object object = oclass.getMethod("getDesktop", new Class[0]).invoke(null, new Object[0]);
+                    Object object = oclass.getMethod("getDesktop").invoke(null);
                     oclass.getMethod("browse", URI.class).invoke(object, new URI(link));
                 } catch (Throwable throwable) {
                     CustomMainMenu.INSTANCE.logger.error("Couldn't open link", throwable);

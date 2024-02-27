@@ -17,13 +17,13 @@ public class GuiCustomConfirmOpenLink extends GuiYesNo {
             boolean p_i1084_4_) {
         super(
                 p_i1084_1_,
-                I18n.format(p_i1084_4_ ? "chat.link.confirmTrusted" : "chat.link.confirm", new Object[0]),
+                I18n.format(p_i1084_4_ ? "chat.link.confirmTrusted" : "chat.link.confirm"),
                 p_i1084_2_,
                 p_i1084_3_);
-        this.confirmButtonText = I18n.format(p_i1084_4_ ? "chat.link.open" : "gui.yes", new Object[0]);
-        this.cancelButtonText = I18n.format(p_i1084_4_ ? "gui.cancel" : "gui.no", new Object[0]);
-        this.copyLinkButtonText = I18n.format("chat.copy", new Object[0]);
-        this.openLinkWarning = I18n.format("chat.link.warning", new Object[0]);
+        this.confirmButtonText = I18n.format(p_i1084_4_ ? "chat.link.open" : "gui.yes");
+        this.cancelButtonText = I18n.format(p_i1084_4_ ? "gui.cancel" : "gui.no");
+        this.copyLinkButtonText = I18n.format("chat.copy");
+        this.openLinkWarning = I18n.format("chat.link.warning");
         this.linkText = p_i1084_2_;
     }
 

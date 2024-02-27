@@ -35,7 +35,7 @@ public class ActionLoadWorld implements IAction {
             } catch (Exception e1) {
                 FMLLog.warning(
                         "There appears to be a problem loading the save %s, both level files are unreadable.",
-                        new Object[] { this.dirName });
+                        this.dirName);
                 return;
             }
         }
