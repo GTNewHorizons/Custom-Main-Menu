@@ -11,6 +11,6 @@ public class TextureResourceLocation extends ResourceLocation implements ITextur
 
     @Override
     public void bind() {
-        Minecraft.getMinecraft().renderEngine.bindTexture((ResourceLocation) this);
+        Minecraft.getMinecraft().renderEngine.bindTexture(this);
     }
 }

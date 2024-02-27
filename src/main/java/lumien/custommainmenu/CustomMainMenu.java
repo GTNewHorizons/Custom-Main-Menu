@@ -45,8 +45,8 @@ public class CustomMainMenu {
         this.config = new Config();
         transparentTexture = new ResourceLocation("custommainmenu:textures/gui/transparent.png");
         EVENT_HANDLER = new CMMEventHandler();
-        MinecraftForge.EVENT_BUS.register((Object) EVENT_HANDLER);
-        FMLCommonHandler.instance().bus().register((Object) EVENT_HANDLER);
+        MinecraftForge.EVENT_BUS.register(EVENT_HANDLER);
+        FMLCommonHandler.instance().bus().register(EVENT_HANDLER);
         this.logger = event.getModLog();
         this.configLoader = new ConfigurationLoader(this.config);
         try {
@@ -63,11 +63,7 @@ public class CustomMainMenu {
         compound.setString("curseProjectName", "226406-custom-main-menu");
         compound.setString("curseFilenameParser", "CustomMainMenu-MC1.8-[].jar");
         compound.setString("modDisplayName", MOD_NAME);
-        FMLInterModComms.sendRuntimeMessage(
-                (Object) MOD_ID,
-                (String) "VersionChecker",
-                (String) "addCurseCheck",
-                (NBTTagCompound) compound);
+        FMLInterModComms.sendRuntimeMessage(MOD_ID, "VersionChecker", "addCurseCheck", compound);
     }
 
     public void reload() {

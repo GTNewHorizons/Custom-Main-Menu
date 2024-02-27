@@ -6,8 +6,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Reader;
 
 import org.apache.commons.io.IOUtils;
 
@@ -47,18 +45,18 @@ public class ConfigurationLoader {
             try {
                 output = new FileOutputStream(mainmenuConfig);
                 input = this.getClass().getResourceAsStream("/assets/custommainmenu/mainmenu_default.json");
-                ByteStreams.copy((InputStream) input, (OutputStream) output);
+                ByteStreams.copy(input, output);
             } catch (FileNotFoundException e1) {
                 e1.printStackTrace();
-                IOUtils.closeQuietly((OutputStream) output);
+                IOUtils.closeQuietly(output);
                 IOUtils.closeQuietly(input);
             } catch (IOException e) {
                 e.printStackTrace();
-                IOUtils.closeQuietly((OutputStream) output);
+                IOUtils.closeQuietly(output);
                 IOUtils.closeQuietly(input);
             }
-            IOUtils.closeQuietly((OutputStream) output);
-            IOUtils.closeQuietly((InputStream) input);
+            IOUtils.closeQuietly(output);
+            IOUtils.closeQuietly(input);
         }
         for (File guiFile : jsonFiles = configFolder.listFiles()) {
             if (!guiFile.getName().equals("mainmenu.json")) continue;
@@ -66,7 +64,7 @@ public class ConfigurationLoader {
             name = guiFile.getName().replace(".json", "");
             reader = null;
             try {
-                reader = new JsonReader((Reader) new FileReader(guiFile));
+                reader = new JsonReader(new FileReader(guiFile));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -101,7 +99,7 @@ public class ConfigurationLoader {
                 name = guiFile.getName().replace(".json", "");
                 reader = null;
                 try {
-                    reader = new JsonReader((Reader) new FileReader(guiFile));
+                    reader = new JsonReader(new FileReader(guiFile));
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }

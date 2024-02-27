@@ -3,7 +3,6 @@ package lumien.custommainmenu.gui;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -46,7 +45,7 @@ public class GuiCustomLabel extends Gui {
             List brandings = FMLCommonHandler.instance().getBrandings(true);
             for (int i = 0; i < brandings.size(); ++i) {
                 String brd = (String) brandings.get(i);
-                if (Strings.isNullOrEmpty((String) brd)) continue;
+                if (Strings.isNullOrEmpty(brd)) continue;
                 string = string + brd + (i < brandings.size() - 1 ? "\n" : "");
             }
             this.text.text = this.text.hoverText = new TextString(string);
@@ -62,10 +61,8 @@ public class GuiCustomLabel extends Gui {
         String toDraw = this.getDrawString();
         boolean newHovered = this.isMouseAboveLabel(mouseX, mouseY);
         if (newHovered && !this.hovered && this.text.hoverSound != null) {
-            Minecraft.getMinecraft().getSoundHandler().playSound(
-                    (ISound) PositionedSoundRecord.func_147674_a(
-                            (ResourceLocation) new ResourceLocation(this.text.hoverSound),
-                            (float) 1.0f));
+            Minecraft.getMinecraft().getSoundHandler()
+                    .playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation(this.text.hoverSound), 1.0f));
         }
         this.hovered = newHovered;
         if (toDraw.contains("\n")) {
@@ -126,14 +123,10 @@ public class GuiCustomLabel extends Gui {
         if (flag && this.text.action != null) {
             if (this.text.pressSound != null) {
                 Minecraft.getMinecraft().getSoundHandler().playSound(
-                        (ISound) PositionedSoundRecord.func_147674_a(
-                                (ResourceLocation) new ResourceLocation(this.text.pressSound),
-                                (float) 1.0f));
+                        PositionedSoundRecord.func_147674_a(new ResourceLocation(this.text.pressSound), 1.0f));
             } else {
-                Minecraft.getMinecraft().getSoundHandler().playSound(
-                        (ISound) PositionedSoundRecord.func_147674_a(
-                                (ResourceLocation) new ResourceLocation("gui.button.press"),
-                                (float) 1.0f));
+                Minecraft.getMinecraft().getSoundHandler()
+                        .playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             }
             this.text.action.perform(this.text, this.parent);
         }

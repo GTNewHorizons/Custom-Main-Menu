@@ -51,10 +51,8 @@ public class APNGLoader {
             byte[] crc = new byte[4];
             inputStream.read(crc);
             if (typeString.equals("IHDR")) {
-                int width = Ints
-                        .fromBytes((byte) chunkData[0], (byte) chunkData[1], (byte) chunkData[2], (byte) chunkData[3]);
-                int height = Ints
-                        .fromBytes((byte) chunkData[4], (byte) chunkData[5], (byte) chunkData[6], (byte) chunkData[7]);
+                int width = Ints.fromBytes(chunkData[0], chunkData[1], chunkData[2], chunkData[3]);
+                int height = Ints.fromBytes(chunkData[4], chunkData[5], chunkData[6], chunkData[7]);
                 byte bitDepth = chunkData[8];
                 byte colorType = chunkData[9];
                 byte compression = chunkData[10];
@@ -93,18 +91,8 @@ public class APNGLoader {
                 continue;
             }
             if (typeString.equals("acTL")) {
-                loadedImage.setNumberOfFrames(
-                        Ints.fromBytes(
-                                (byte) chunkData[0],
-                                (byte) chunkData[1],
-                                (byte) chunkData[2],
-                                (byte) chunkData[3]));
-                loadedImage.setNumberOfLoops(
-                        Ints.fromBytes(
-                                (byte) chunkData[4],
-                                (byte) chunkData[5],
-                                (byte) chunkData[6],
-                                (byte) chunkData[7]));
+                loadedImage.setNumberOfFrames(Ints.fromBytes(chunkData[0], chunkData[1], chunkData[2], chunkData[3]));
+                loadedImage.setNumberOfLoops(Ints.fromBytes(chunkData[4], chunkData[5], chunkData[6], chunkData[7]));
                 System.out.println("Frames : " + loadedImage.numberOfFrames);
                 continue;
             }
@@ -118,34 +106,32 @@ public class APNGLoader {
                 currentFrame = new Frame();
                 ByteArrayInputStream byteStream = new ByteArrayInputStream(chunkData);
                 currentFrame.sequenceNumber = Ints.fromBytes(
-                        (byte) ((byte) byteStream.read()),
-                        (byte) ((byte) byteStream.read()),
-                        (byte) ((byte) byteStream.read()),
-                        (byte) ((byte) byteStream.read()));
+                        (byte) byteStream.read(),
+                        (byte) byteStream.read(),
+                        (byte) byteStream.read(),
+                        (byte) byteStream.read());
                 currentFrame.width = Ints.fromBytes(
-                        (byte) ((byte) byteStream.read()),
-                        (byte) ((byte) byteStream.read()),
-                        (byte) ((byte) byteStream.read()),
-                        (byte) ((byte) byteStream.read()));
+                        (byte) byteStream.read(),
+                        (byte) byteStream.read(),
+                        (byte) byteStream.read(),
+                        (byte) byteStream.read());
                 currentFrame.height = Ints.fromBytes(
-                        (byte) ((byte) byteStream.read()),
-                        (byte) ((byte) byteStream.read()),
-                        (byte) ((byte) byteStream.read()),
-                        (byte) ((byte) byteStream.read()));
+                        (byte) byteStream.read(),
+                        (byte) byteStream.read(),
+                        (byte) byteStream.read(),
+                        (byte) byteStream.read());
                 currentFrame.offX = Ints.fromBytes(
-                        (byte) ((byte) byteStream.read()),
-                        (byte) ((byte) byteStream.read()),
-                        (byte) ((byte) byteStream.read()),
-                        (byte) ((byte) byteStream.read()));
+                        (byte) byteStream.read(),
+                        (byte) byteStream.read(),
+                        (byte) byteStream.read(),
+                        (byte) byteStream.read());
                 currentFrame.offY = Ints.fromBytes(
-                        (byte) ((byte) byteStream.read()),
-                        (byte) ((byte) byteStream.read()),
-                        (byte) ((byte) byteStream.read()),
-                        (byte) ((byte) byteStream.read()));
-                currentFrame.delayNum = Shorts
-                        .fromBytes((byte) ((byte) byteStream.read()), (byte) ((byte) byteStream.read()));
-                currentFrame.delayDen = Shorts
-                        .fromBytes((byte) ((byte) byteStream.read()), (byte) ((byte) byteStream.read()));
+                        (byte) byteStream.read(),
+                        (byte) byteStream.read(),
+                        (byte) byteStream.read(),
+                        (byte) byteStream.read());
+                currentFrame.delayNum = Shorts.fromBytes((byte) byteStream.read(), (byte) byteStream.read());
+                currentFrame.delayDen = Shorts.fromBytes((byte) byteStream.read(), (byte) byteStream.read());
                 currentFrame.disposeOP = byteStream.read();
                 currentFrame.blendOP = byteStream.read();
                 System.out.println("New Frame: " + currentFrame.sequenceNumber);
@@ -156,10 +142,10 @@ public class APNGLoader {
             if (!typeString.equals("fdAT")) continue;
             ByteArrayInputStream byteStream = new ByteArrayInputStream(chunkData);
             int sequenceNumber = Ints.fromBytes(
-                    (byte) ((byte) byteStream.read()),
-                    (byte) ((byte) byteStream.read()),
-                    (byte) ((byte) byteStream.read()),
-                    (byte) ((byte) byteStream.read()));
+                    (byte) byteStream.read(),
+                    (byte) byteStream.read(),
+                    (byte) byteStream.read(),
+                    (byte) byteStream.read());
             byte[] data = new byte[byteStream.available()];
             byteStream.read(data);
             currentImageData.write(data);
@@ -196,8 +182,8 @@ public class APNGLoader {
         if (pngImage.getColorType() == 6) {
             colorAmount = 4;
         }
-        ByteBuffer byteBuffer = BufferUtils.createByteBuffer(
-                (int) (frame.width * frame.height * colorAmount * pngImage.bitDepth / 8 + frame.height));
+        ByteBuffer byteBuffer = BufferUtils
+                .createByteBuffer(frame.width * frame.height * colorAmount * pngImage.bitDepth / 8 + frame.height);
         Inflater inflater = new Inflater();
         inflater.setInput(imageData);
         byte[][] inflated = new byte[frame.height][frame.width * samples * pngImage.bitDepth / 8 + 1];
@@ -297,33 +283,33 @@ public class APNGLoader {
 
     private static int loadImageData(APNGImage apngImage, Frame frame, byte[] imageData) {
         int textureID = GL11.glGenTextures();
-        GL11.glBindTexture((int) GL11.GL_TEXTURE_2D, (int) textureID);
-        GL11.glTexParameteri((int) GL11.GL_TEXTURE_2D, (int) GL11.GL_TEXTURE_WRAP_S, (int) GL11.GL_REPEAT);
-        GL11.glTexParameteri((int) GL11.GL_TEXTURE_2D, (int) GL11.GL_TEXTURE_WRAP_T, (int) GL11.GL_REPEAT);
-        GL11.glTexParameteri((int) GL11.GL_TEXTURE_2D, (int) GL11.GL_TEXTURE_MAG_FILTER, (int) GL11.GL_NEAREST);
-        GL11.glTexParameteri((int) GL11.GL_TEXTURE_2D, (int) GL11.GL_TEXTURE_MIN_FILTER, (int) GL11.GL_NEAREST);
+        GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureID);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL11.GL_REPEAT);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL11.GL_REPEAT);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
         if (apngImage.getColorType() == 6) {
             GL11.glTexImage2D(
-                    (int) 3553,
-                    (int) 0,
-                    (int) 6408,
-                    (int) frame.width,
-                    (int) frame.height,
-                    (int) 0,
-                    (int) 6408,
-                    (int) 5121,
-                    (ByteBuffer) APNGLoader.getPixelData(apngImage, frame, imageData));
+                    3553,
+                    0,
+                    6408,
+                    frame.width,
+                    frame.height,
+                    0,
+                    6408,
+                    5121,
+                    APNGLoader.getPixelData(apngImage, frame, imageData));
         } else {
             GL11.glTexImage2D(
-                    (int) 3553,
-                    (int) 0,
-                    (int) 6407,
-                    (int) frame.width,
-                    (int) frame.height,
-                    (int) 0,
-                    (int) 6407,
-                    (int) 5121,
-                    (ByteBuffer) APNGLoader.getPixelData(apngImage, frame, imageData));
+                    3553,
+                    0,
+                    6407,
+                    frame.width,
+                    frame.height,
+                    0,
+                    6407,
+                    5121,
+                    APNGLoader.getPixelData(apngImage, frame, imageData));
         }
         return textureID;
     }

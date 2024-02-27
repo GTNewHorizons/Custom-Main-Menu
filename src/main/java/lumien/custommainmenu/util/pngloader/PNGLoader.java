@@ -45,10 +45,8 @@ public class PNGLoader {
             byte[] crc = new byte[4];
             inputStream.read(crc);
             if (typeString.equals("IHDR")) {
-                int width = Ints
-                        .fromBytes((byte) chunkData[0], (byte) chunkData[1], (byte) chunkData[2], (byte) chunkData[3]);
-                int height = Ints
-                        .fromBytes((byte) chunkData[4], (byte) chunkData[5], (byte) chunkData[6], (byte) chunkData[7]);
+                int width = Ints.fromBytes(chunkData[0], chunkData[1], chunkData[2], chunkData[3]);
+                int height = Ints.fromBytes(chunkData[4], chunkData[5], chunkData[6], chunkData[7]);
                 byte bitDepth = chunkData[8];
                 byte colorType = chunkData[9];
                 byte compression = chunkData[10];
@@ -112,7 +110,7 @@ public class PNGLoader {
             colorAmount = 4;
         }
         ByteBuffer byteBuffer = BufferUtils.createByteBuffer(
-                (int) (pngImage.width * pngImage.height * colorAmount * pngImage.bitDepth / 8 + pngImage.height));
+                pngImage.width * pngImage.height * colorAmount * pngImage.bitDepth / 8 + pngImage.height);
         Inflater inflater = new Inflater();
         inflater.setInput(imageData);
         byte[][] inflated = new byte[pngImage.height][pngImage.width * samples * pngImage.bitDepth / 8 + 1];
@@ -244,7 +242,7 @@ public class PNGLoader {
             colorAmount = 4;
         }
         ByteBuffer byteBuffer = BufferUtils
-                .createByteBuffer((int) (pngImage.width * pngImage.height * colorAmount * pngImage.bitDepth / 8));
+                .createByteBuffer(pngImage.width * pngImage.height * colorAmount * pngImage.bitDepth / 8);
         System.out.println("Samples: " + samples);
         block12: for (int scanLine = 0; scanLine < pngImage.height; ++scanLine) {
             switch (pngImage.getColorType()) {
@@ -276,34 +274,34 @@ public class PNGLoader {
 
     private static void loadImageData(PNGImage pngImage, byte[] imageData) {
         int textureID = GL11.glGenTextures();
-        GL11.glBindTexture((int) GL11.GL_TEXTURE_2D, (int) textureID);
+        GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureID);
         pngImage.setTextureID(textureID);
-        GL11.glTexParameteri((int) GL11.GL_TEXTURE_2D, (int) GL11.GL_TEXTURE_WRAP_S, (int) GL11.GL_REPEAT);
-        GL11.glTexParameteri((int) GL11.GL_TEXTURE_2D, (int) GL11.GL_TEXTURE_WRAP_T, (int) GL11.GL_REPEAT);
-        GL11.glTexParameteri((int) GL11.GL_TEXTURE_2D, (int) GL11.GL_TEXTURE_MAG_FILTER, (int) GL11.GL_NEAREST);
-        GL11.glTexParameteri((int) GL11.GL_TEXTURE_2D, (int) GL11.GL_TEXTURE_MIN_FILTER, (int) GL11.GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL11.GL_REPEAT);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL11.GL_REPEAT);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
         if (pngImage.getColorType() == 6) {
             GL11.glTexImage2D(
-                    (int) 3553,
-                    (int) 0,
-                    (int) 6408,
-                    (int) pngImage.getWidth(),
-                    (int) pngImage.getHeight(),
-                    (int) 0,
-                    (int) 6408,
-                    (int) 5121,
-                    (ByteBuffer) PNGLoader.getPixelData(pngImage, imageData));
+                    3553,
+                    0,
+                    6408,
+                    pngImage.getWidth(),
+                    pngImage.getHeight(),
+                    0,
+                    6408,
+                    5121,
+                    PNGLoader.getPixelData(pngImage, imageData));
         } else {
             GL11.glTexImage2D(
-                    (int) 3553,
-                    (int) 0,
-                    (int) 6407,
-                    (int) pngImage.getWidth(),
-                    (int) pngImage.getHeight(),
-                    (int) 0,
-                    (int) 6407,
-                    (int) 5121,
-                    (ByteBuffer) PNGLoader.getPixelData(pngImage, imageData));
+                    3553,
+                    0,
+                    6407,
+                    pngImage.getWidth(),
+                    pngImage.getHeight(),
+                    0,
+                    6407,
+                    5121,
+                    PNGLoader.getPixelData(pngImage, imageData));
         }
     }
 

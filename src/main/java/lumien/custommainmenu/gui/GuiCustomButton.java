@@ -3,7 +3,6 @@ package lumien.custommainmenu.gui;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.FontRenderer;
@@ -66,10 +65,8 @@ public class GuiCustomButton extends GuiButton {
                     && mouseX < this.xPosition + this.width
                     && mouseY < this.yPosition + this.height;
             if (newHovered && !this.hovered && this.b.hoverSound != null) {
-                Minecraft.getMinecraft().getSoundHandler().playSound(
-                        (ISound) PositionedSoundRecord.func_147674_a(
-                                (ResourceLocation) new ResourceLocation(this.b.hoverSound),
-                                (float) 1.0f));
+                Minecraft.getMinecraft().getSoundHandler()
+                        .playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation(this.b.hoverSound), 1.0f));
             }
             this.hovered = newHovered;
             int k = this.getHoverState(this.hovered);
@@ -165,7 +162,7 @@ public class GuiCustomButton extends GuiButton {
             this.drawGradientRect(j2 - 3, k2 - 3, j2 + k + 3, k2 - 3 + 1, k1, k1);
             this.drawGradientRect(j2 - 3, k2 + i1 + 2, j2 + k + 3, k2 + i1 + 3, l1, l1);
             for (int i2 = 0; i2 < textLines.size(); ++i2) {
-                String s1 = (String) textLines.get(i2);
+                String s1 = textLines.get(i2);
                 font.drawStringWithShadow(s1, j2, k2, -1);
                 if (i2 == 0) {
                     k2 += 2;
@@ -187,9 +184,8 @@ public class GuiCustomButton extends GuiButton {
 
     public void func_146113_a(SoundHandler soundHandlerIn) {
         if (this.b.pressSound != null) {
-            soundHandlerIn.playSound(
-                    (ISound) PositionedSoundRecord
-                            .func_147674_a((ResourceLocation) new ResourceLocation(this.b.pressSound), (float) 1.0f));
+            soundHandlerIn
+                    .playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation(this.b.pressSound), 1.0f));
         } else {
             super.func_146113_a(soundHandlerIn);
         }

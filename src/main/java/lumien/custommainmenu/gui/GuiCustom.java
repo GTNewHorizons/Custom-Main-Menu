@@ -25,7 +25,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.Project;
 
-import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import lumien.custommainmenu.CustomMainMenu;
@@ -74,7 +73,7 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
 
     protected void keyTyped(char p_73869_1_, int p_73869_2_) {
         if (p_73869_2_ == 1) {
-            this.mc.displayGuiScreen((GuiScreen) null);
+            this.mc.displayGuiScreen(null);
         }
     }
 
@@ -93,7 +92,7 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
     public void initGui() {
         if (!this.loadedSplashText && this.guiConfig.splashText != null) {
             if (this.guiConfig.splashText.synced) {
-                this.splashText = CustomMainMenu.INSTANCE.config.getGUI((String) "mainmenu").splashText;
+                this.splashText = CustomMainMenu.INSTANCE.config.getGUI("mainmenu").splashText;
             } else {
                 this.loadSplashTexts();
             }
@@ -165,7 +164,7 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
                 }
             }
         }
-        this.mc.displayGuiScreen((GuiScreen) this);
+        this.mc.displayGuiScreen(this);
     }
 
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
@@ -192,18 +191,18 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
                 this.drawGradientRect(0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
             }
         } else {
-            GL11.glBegin((int) GL11.GL_QUADS);
-            GL11.glColor3f((float) 0.0f, (float) 0.0f, (float) 0.0f);
-            GL11.glVertex3f((float) 0.0f, (float) 0.0f, (float) 0.0f);
-            GL11.glColor3f((float) 0.0f, (float) 0.0f, (float) 0.0f);
-            GL11.glVertex3f((float) 0.0f, (float) this.height, (float) 0.0f);
-            GL11.glColor3f((float) 0.0f, (float) 0.0f, (float) 0.0f);
-            GL11.glVertex3f((float) this.width, (float) this.height, (float) 0.0f);
-            GL11.glColor3f((float) 0.0f, (float) 0.0f, (float) 0.0f);
-            GL11.glVertex3f((float) this.width, (float) 0.0f, (float) 0.0f);
+            GL11.glBegin(GL11.GL_QUADS);
+            GL11.glColor3f(0.0f, 0.0f, 0.0f);
+            GL11.glVertex3f(0.0f, 0.0f, 0.0f);
+            GL11.glColor3f(0.0f, 0.0f, 0.0f);
+            GL11.glVertex3f(0.0f, (float) this.height, 0.0f);
+            GL11.glColor3f(0.0f, 0.0f, 0.0f);
+            GL11.glVertex3f((float) this.width, (float) this.height, 0.0f);
+            GL11.glColor3f(0.0f, 0.0f, 0.0f);
+            GL11.glVertex3f((float) this.width, 0.0f, 0.0f);
             GL11.glEnd();
         }
-        GL11.glColor3f((float) 1.0f, (float) 1.0f, (float) 1.0f);
+        GL11.glColor3f(1.0f, 1.0f, 1.0f);
         GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
         Background background = this.guiConfig.background;
         if (background != null) {
@@ -263,9 +262,8 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
                     0.0f);
             GlStateManager.rotate(-20.0f, 0.0f, 0.0f, 1.0f);
             float f1 = 1.8f - MathHelper.abs(
-                    (float) (MathHelper.sin(
-                            (float) ((float) (Minecraft.getSystemTime() % 1000L) / 1000.0f * (float) Math.PI * 2.0f))
-                            * 0.1f));
+                    MathHelper.sin((float) (Minecraft.getSystemTime() % 1000L) / 1000.0f * (float) Math.PI * 2.0f)
+                            * 0.1f);
             f1 = f1 * 100.0f / (float) (this.fontRenderer.getStringWidth(this.splashText) + 32);
             GlStateManager.scale(f1, f1, f1);
             this.drawCenteredString(this.fontRenderer, this.splashText, 0, -8, splashText.color);
@@ -280,7 +278,7 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
         }
         for (Object o : this.buttonList) {
             if (!(o instanceof GuiCustomButton)) continue;
-            ((GuiCustomButton) ((Object) o)).drawTooltip(this.mc, mouseX, mouseY);
+            ((GuiCustomButton) o).drawTooltip(this.mc, mouseX, mouseY);
         }
         for (w = 0; w < this.labelList.size(); ++w) {
             ((GuiLabel) this.labelList.get(w)).func_146159_a(this.mc, mouseX, mouseY);
@@ -288,8 +286,8 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
     }
 
     private void drawBackground(Background.MODE mode) {
-        int imageWidth = GL11.glGetTexLevelParameteri((int) GL11.GL_TEXTURE_2D, (int) 0, (int) GL11.GL_TEXTURE_WIDTH);
-        int imageHeight = GL11.glGetTexLevelParameteri((int) GL11.GL_TEXTURE_2D, (int) 0, (int) GL11.GL_TEXTURE_HEIGHT);
+        int imageWidth = GL11.glGetTexLevelParameteri(GL11.GL_TEXTURE_2D, 0, GL11.GL_TEXTURE_WIDTH);
+        int imageHeight = GL11.glGetTexLevelParameteri(GL11.GL_TEXTURE_2D, 0, GL11.GL_TEXTURE_HEIGHT);
         int drawWidth = 0;
         int drawHeight = 0;
         float factorWidth = (float) this.width / (float) imageWidth;
@@ -352,17 +350,10 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
         worldrenderer.setColorRGBA_F(1.0f, 1.0f, 1.0f, 1.0f);
         int k = this.width;
         int l = this.height;
-        worldrenderer
-                .addVertexWithUV(0.0, (double) l, (double) this.zLevel, (double) (0.5f - f2), (double) (0.5f + f3));
-        worldrenderer.addVertexWithUV(
-                (double) k,
-                (double) l,
-                (double) this.zLevel,
-                (double) (0.5f - f2),
-                (double) (0.5f - f3));
-        worldrenderer
-                .addVertexWithUV((double) k, 0.0, (double) this.zLevel, (double) (0.5f + f2), (double) (0.5f - f3));
-        worldrenderer.addVertexWithUV(0.0, 0.0, (double) this.zLevel, (double) (0.5f + f2), (double) (0.5f + f3));
+        worldrenderer.addVertexWithUV(0.0, l, this.zLevel, 0.5f - f2, 0.5f + f3);
+        worldrenderer.addVertexWithUV(k, l, this.zLevel, 0.5f - f2, 0.5f - f3);
+        worldrenderer.addVertexWithUV(k, 0.0, this.zLevel, 0.5f + f2, 0.5f - f3);
+        worldrenderer.addVertexWithUV(0.0, 0.0, this.zLevel, 0.5f + f2, 0.5f + f3);
         worldrenderer.draw();
     }
 
@@ -371,7 +362,7 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
         GlStateManager.matrixMode(5889);
         GlStateManager.pushMatrix();
         GlStateManager.loadIdentity();
-        Project.gluPerspective((float) 120.0f, (float) 1.0f, (float) 0.05f, (float) 10.0f);
+        Project.gluPerspective(120.0f, 1.0f, 0.05f, 10.0f);
         GlStateManager.matrixMode(5888);
         GlStateManager.pushMatrix();
         GlStateManager.loadIdentity();
@@ -395,7 +386,7 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
                 animationCounter = 0.0f;
             }
             GlStateManager.rotate(
-                    MathHelper.sin((float) (((float) this.panoramaTimer + animationCounter) / 400.0f)) * 25.0f + 20.0f,
+                    MathHelper.sin(((float) this.panoramaTimer + animationCounter) / 400.0f) * 25.0f + 20.0f,
                     1.0f,
                     0.0f,
                     0.0f);
@@ -421,10 +412,10 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
                 worldrenderer.startDrawingQuads();
                 worldrenderer.setColorRGBA_I(16777215, 255 / (k + 1));
                 float f4 = 0.0f;
-                worldrenderer.addVertexWithUV(-1.0, -1.0, 1.0, (double) (0.0f + f4), (double) (0.0f + f4));
-                worldrenderer.addVertexWithUV(1.0, -1.0, 1.0, (double) (1.0f - f4), (double) (0.0f + f4));
-                worldrenderer.addVertexWithUV(1.0, 1.0, 1.0, (double) (1.0f - f4), (double) (1.0f - f4));
-                worldrenderer.addVertexWithUV(-1.0, 1.0, 1.0, (double) (0.0f + f4), (double) (1.0f - f4));
+                worldrenderer.addVertexWithUV(-1.0, -1.0, 1.0, 0.0f + f4, 0.0f + f4);
+                worldrenderer.addVertexWithUV(1.0, -1.0, 1.0, 1.0f - f4, 0.0f + f4);
+                worldrenderer.addVertexWithUV(1.0, 1.0, 1.0, 1.0f - f4, 1.0f - f4);
+                worldrenderer.addVertexWithUV(-1.0, 1.0, 1.0, 0.0f + f4, 1.0f - f4);
                 worldrenderer.draw();
                 GlStateManager.popMatrix();
             }
@@ -464,28 +455,20 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
         if (this.guiConfig.background != null && this.guiConfig.background.ichBinEineSlideshow) {
             this.guiConfig.background.slideShow.update();
         }
-        if (Keyboard.isKeyDown((int) 29) && Keyboard.isKeyDown((int) 19)) {
+        if (Keyboard.isKeyDown(29) && Keyboard.isKeyDown(19)) {
             CustomMainMenu.INSTANCE.reload();
-            if (Keyboard.isKeyDown((int) 42)) {
+            if (Keyboard.isKeyDown(42)) {
                 this.mc.refreshResources();
             }
-            this.mc.displayGuiScreen((GuiScreen) new GuiMainMenu());
+            this.mc.displayGuiScreen(new GuiMainMenu());
         }
     }
 
     private void rotateAndBlurSkybox(float p_73968_1_) {
         this.mc.getTextureManager().bindTexture(this.field_110351_G);
-        GL11.glTexParameteri((int) GL11.GL_TEXTURE_2D, (int) GL11.GL_TEXTURE_MIN_FILTER, (int) GL11.GL_LINEAR);
-        GL11.glTexParameteri((int) GL11.GL_TEXTURE_2D, (int) GL11.GL_TEXTURE_MAG_FILTER, (int) GL11.GL_LINEAR);
-        GL11.glCopyTexSubImage2D(
-                (int) GL11.GL_TEXTURE_2D,
-                (int) 0,
-                (int) 0,
-                (int) 0,
-                (int) 0,
-                (int) 0,
-                (int) 256,
-                (int) 256);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
+        GL11.glCopyTexSubImage2D(GL11.GL_TEXTURE_2D, 0, 0, 0, 0, 0, 256, 256);
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         GlStateManager.colorMask(true, true, true, false);
@@ -499,10 +482,10 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
                 int j = this.width;
                 int k = this.height;
                 float f1 = (float) (i - b0 / 2) / 256.0f;
-                worldrenderer.addVertexWithUV((double) j, (double) k, (double) this.zLevel, (double) (0.0f + f1), 1.0);
-                worldrenderer.addVertexWithUV((double) j, 0.0, (double) this.zLevel, (double) (1.0f + f1), 1.0);
-                worldrenderer.addVertexWithUV(0.0, 0.0, (double) this.zLevel, (double) (1.0f + f1), 0.0);
-                worldrenderer.addVertexWithUV(0.0, (double) k, (double) this.zLevel, (double) (0.0f + f1), 0.0);
+                worldrenderer.addVertexWithUV(j, k, this.zLevel, 0.0f + f1, 1.0);
+                worldrenderer.addVertexWithUV(j, 0.0, this.zLevel, 1.0f + f1, 1.0);
+                worldrenderer.addVertexWithUV(0.0, 0.0, this.zLevel, 1.0f + f1, 0.0);
+                worldrenderer.addVertexWithUV(0.0, k, this.zLevel, 0.0f + f1, 0.0);
             }
         }
         worldrenderer.draw();
@@ -523,17 +506,17 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
             GuiCustomWrappedButton wrapped = (GuiCustomWrappedButton) button;
             if (wrapped.wrappedButton != null) {
                 GuiScreenEvent.ActionPerformedEvent.Pre event = new GuiScreenEvent.ActionPerformedEvent.Pre(
-                        (GuiScreen) new GuiFakeMain(),
+                        new GuiFakeMain(),
                         wrapped.wrappedButton,
                         new ArrayList());
-                if (MinecraftForge.EVENT_BUS.post((Event) event)) {
+                if (MinecraftForge.EVENT_BUS.post(event)) {
                     return;
                 }
                 event.button.func_146113_a(this.mc.getSoundHandler());
-                if (((Object) ((Object) this)).equals((Object) this.mc.currentScreen)) {
+                if (this.equals(this.mc.currentScreen)) {
                     MinecraftForge.EVENT_BUS.post(
-                            (Event) new GuiScreenEvent.ActionPerformedEvent.Post(
-                                    (GuiScreen) new GuiFakeMain(),
+                            new GuiScreenEvent.ActionPerformedEvent.Post(
+                                    new GuiFakeMain(),
                                     wrapped.wrappedButton,
                                     new ArrayList()));
                 }

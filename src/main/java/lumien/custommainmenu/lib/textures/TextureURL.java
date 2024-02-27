@@ -48,14 +48,10 @@ public class TextureURL implements ITexture {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            IOUtils.closeQuietly((InputStream) inputStream);
+            IOUtils.closeQuietly(inputStream);
         }
         if (bi != null) {
-            this.textureID = TextureUtil.uploadTextureImageAllocate(
-                    (int) GL11.glGenTextures(),
-                    (BufferedImage) bi,
-                    (boolean) false,
-                    (boolean) false);
+            this.textureID = TextureUtil.uploadTextureImageAllocate(GL11.glGenTextures(), bi, false, false);
         }
     }
 
@@ -65,12 +61,7 @@ public class TextureURL implements ITexture {
             GlStateManager.bindTexture(this.textureID);
         } else {
             if (this.bi != null) {
-                this.setTextureID(
-                        TextureUtil.uploadTextureImageAllocate(
-                                (int) GL11.glGenTextures(),
-                                (BufferedImage) this.bi,
-                                (boolean) false,
-                                (boolean) false));
+                this.setTextureID(TextureUtil.uploadTextureImageAllocate(GL11.glGenTextures(), this.bi, false, false));
                 this.bind();
                 return;
             }
@@ -95,7 +86,7 @@ public class TextureURL implements ITexture {
         try {
             bufferedimage = ImageIO.read(imageStream);
         } finally {
-            IOUtils.closeQuietly((InputStream) imageStream);
+            IOUtils.closeQuietly(imageStream);
         }
         return bufferedimage;
     }

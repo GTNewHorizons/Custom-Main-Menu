@@ -20,7 +20,7 @@ public class PNGImage {
     }
 
     public void bindTexture() {
-        GL11.glBindTexture((int) GL11.GL_TEXTURE_2D, (int) this.textureID);
+        GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.textureID);
     }
 
     public int getBitDepth() {

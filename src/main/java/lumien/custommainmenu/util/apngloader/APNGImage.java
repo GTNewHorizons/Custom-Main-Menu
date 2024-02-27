@@ -20,7 +20,7 @@ public class APNGImage {
 
     public void draw(int x, int y, int width, int height) {
         Frame currentFrame = this.frames[(int) (System.currentTimeMillis() / 100L % (long) this.frames.length)];
-        GL11.glBindTexture((int) GL11.GL_TEXTURE_2D, (int) currentFrame.textureID);
+        GL11.glBindTexture(GL11.GL_TEXTURE_2D, currentFrame.textureID);
     }
 
     public void setPalette(Triple[] palette) {
@@ -29,8 +29,8 @@ public class APNGImage {
 
     public void bindTexture() {
         GL11.glBindTexture(
-                (int) 3553,
-                (int) this.frames[(int) (System.currentTimeMillis() / 100L % (long) this.frames.length)].textureID);
+                3553,
+                this.frames[(int) (System.currentTimeMillis() / 100L % (long) this.frames.length)].textureID);
     }
 
     public int getBitDepth() {

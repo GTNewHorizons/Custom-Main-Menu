@@ -37,42 +37,42 @@ public class ActionOpenGUI implements IAction {
             String customName = this.guiName.substring(7);
             gui = CustomMainMenu.INSTANCE.config.getGUI(customName);
         } else if (this.guiName.equalsIgnoreCase("mods")) {
-            gui = new GuiModList((GuiScreen) menu);
+            gui = new GuiModList(menu);
         } else if (this.guiName.equalsIgnoreCase("singleplayer")) {
-            gui = new GuiSelectWorld((GuiScreen) menu);
+            gui = new GuiSelectWorld(menu);
         } else if (this.guiName.equalsIgnoreCase("singleplayer.createworld")) {
-            gui = new GuiCreateWorld((GuiScreen) menu);
+            gui = new GuiCreateWorld(menu);
         } else if (this.guiName.equalsIgnoreCase("multiplayer")) {
-            gui = new GuiMultiplayer((GuiScreen) menu);
+            gui = new GuiMultiplayer(menu);
         } else if (this.guiName.equalsIgnoreCase("options")) {
-            gui = new GuiOptions((GuiScreen) menu, menu.mc.gameSettings);
+            gui = new GuiOptions(menu, menu.mc.gameSettings);
         } else if (this.guiName.equalsIgnoreCase("languages")) {
-            gui = new GuiLanguage((GuiScreen) menu, menu.mc.gameSettings, menu.mc.getLanguageManager());
+            gui = new GuiLanguage(menu, menu.mc.gameSettings, menu.mc.getLanguageManager());
         } else if (this.guiName.equalsIgnoreCase("options.ressourcepacks")) {
-            gui = new GuiScreenResourcePacks((GuiScreen) menu);
+            gui = new GuiScreenResourcePacks(menu);
         } else if (this.guiName.equalsIgnoreCase("options.snooper")) {
-            gui = new GuiSnooper((GuiScreen) menu, menu.mc.gameSettings);
+            gui = new GuiSnooper(menu, menu.mc.gameSettings);
         } else if (this.guiName.equalsIgnoreCase("options.sounds")) {
-            gui = new GuiScreenOptionsSounds((GuiScreen) menu, menu.mc.gameSettings);
+            gui = new GuiScreenOptionsSounds(menu, menu.mc.gameSettings);
         } else if (this.guiName.equalsIgnoreCase("options.broadcast")) {
             menu.mc.gameSettings.saveOptions();
             IStream istream = menu.mc.func_152346_Z();
             if (istream.func_152936_l() && istream.func_152928_D()) {
-                gui = new GuiStreamOptions((GuiScreen) menu, menu.mc.gameSettings);
+                gui = new GuiStreamOptions(menu, menu.mc.gameSettings);
             } else {
-                GuiStreamUnavailable.func_152321_a((GuiScreen) menu);
+                GuiStreamUnavailable.func_152321_a(menu);
             }
         } else if (this.guiName.equalsIgnoreCase("options.video")) {
-            gui = new GuiVideoSettings((GuiScreen) menu, menu.mc.gameSettings);
+            gui = new GuiVideoSettings(menu, menu.mc.gameSettings);
         } else if (this.guiName.equalsIgnoreCase("options.controls")) {
-            gui = new GuiControls((GuiScreen) menu, menu.mc.gameSettings);
+            gui = new GuiControls(menu, menu.mc.gameSettings);
         } else if (this.guiName.equalsIgnoreCase("options.multiplayer")) {
-            gui = new ScreenChatOptions((GuiScreen) menu, menu.mc.gameSettings);
+            gui = new ScreenChatOptions(menu, menu.mc.gameSettings);
         } else if (this.guiName.equalsIgnoreCase("mainmenu")) {
             gui = new GuiMainMenu();
         }
         if (gui != null) {
-            Minecraft.getMinecraft().displayGuiScreen((GuiScreen) gui);
+            Minecraft.getMinecraft().displayGuiScreen(gui);
         }
     }
 }

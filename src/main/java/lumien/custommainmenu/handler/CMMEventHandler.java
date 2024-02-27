@@ -63,7 +63,7 @@ public class CMMEventHandler {
                 event.buttonList = new ArrayList();
                 this.actualGui = custom;
                 try {
-                    this.guiField.set((Object) event, (Object) new GuiFakeMain());
+                    this.guiField.set(event, new GuiFakeMain());
                 } catch (IllegalArgumentException e) {
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {
@@ -85,13 +85,13 @@ public class CMMEventHandler {
                 if (b instanceof GuiCustomButton) continue;
                 iterator.remove();
                 removedButtons.put(b.id, b);
-                if (b.id == 666 && Loader.isModLoaded((String) "OpenEye")) {
+                if (b.id == 666 && Loader.isModLoaded("OpenEye")) {
                     CustomMainMenu.INSTANCE.logger.log(
                             Level.DEBUG,
                             "Found OpenEye button, use a wrapped button to config this. (" + b.id + ")");
                     continue;
                 }
-                if (b.id == 404 && Loader.isModLoaded((String) "VersionChecker")) {
+                if (b.id == 404 && Loader.isModLoaded("VersionChecker")) {
                     CustomMainMenu.INSTANCE.logger.log(
                             Level.DEBUG,
                             "Found VersionChecker button, use a wrapped button to config this. (" + b.id + ")");
@@ -109,7 +109,7 @@ public class CMMEventHandler {
                         "Initiating Wrapped Button " + b.wrappedButtonID
                                 + " with "
                                 + removedButtons.get(b.wrappedButtonID));
-                b.init((GuiButton) removedButtons.get(b.wrappedButtonID));
+                b.init(removedButtons.get(b.wrappedButtonID));
             }
         }
     }
