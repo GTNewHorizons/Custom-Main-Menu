@@ -4,5 +4,5 @@ import lumien.custommainmenu.gui.GuiCustom;
 
 public interface IAction {
 
-    public void perform(Object var1, GuiCustom var2);
+    void perform(Object var1, GuiCustom var2);
 }

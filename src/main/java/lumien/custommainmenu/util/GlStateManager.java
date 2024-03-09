@@ -314,7 +314,7 @@ public class GlStateManager {
     }
 
     @SideOnly(value = Side.CLIENT)
-    public static enum TexGen {
+    public enum TexGen {
         S,
         T,
         R,

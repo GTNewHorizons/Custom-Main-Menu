@@ -24,7 +24,7 @@ public class Background extends Element {
         this.mode = MODE.valueOf(newMode.toUpperCase(Locale.US));
     }
 
-    public static enum MODE {
+    public enum MODE {
         FILL,
         STRETCH,
         CENTER,
