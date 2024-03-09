@@ -84,12 +84,7 @@ public class ConfigurationLoader {
             }
             this.config.addGui(guiConfig.name, new GuiCustom(guiConfig));
         }
-        File[] arr$ = jsonFiles;
-        int len$ = arr$.length;
-        int i$ = 0;
-        while (i$ < len$) {
-            File guiFile;
-            guiFile = arr$[i$];
+        for (File guiFile : jsonFiles) {
             if (!guiFile.getName().equals("mainmenu.json") && guiFile.getName().endsWith(".json")) {
                 guiConfig = new GuiConfig();
                 name = guiFile.getName().replace(".json", "");
@@ -119,7 +114,6 @@ public class ConfigurationLoader {
                 }
                 this.config.addGui(guiConfig.name, new GuiCustom(guiConfig));
             }
-            ++i$;
         }
     }
 }
