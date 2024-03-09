@@ -77,8 +77,7 @@ public class CMMEventHandler {
             // noinspection unchecked
             Iterator<GuiButton> iterator = event.buttonList.iterator();
             while (iterator.hasNext()) {
-                Object o = iterator.next();
-                GuiButton b = (GuiButton) o;
+                GuiButton b = iterator.next();
                 if (b instanceof GuiCustomButton) continue;
                 iterator.remove();
                 removedButtons.put(b.id, b);
