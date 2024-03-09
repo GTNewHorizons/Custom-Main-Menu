@@ -13,7 +13,7 @@ public class APNGImage {
     int filter;
     int textureID;
     int interlace;
-    Triple[] palette;
+    Triple<Integer, Integer, Integer>[] palette;
     Frame[] frames;
     int numberOfFrames;
     int numberOfLoops;
@@ -23,7 +23,7 @@ public class APNGImage {
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, currentFrame.textureID);
     }
 
-    public void setPalette(Triple[] palette) {
+    public void setPalette(Triple<Integer, Integer, Integer>[] palette) {
         this.palette = palette;
     }
 
@@ -93,7 +93,7 @@ public class APNGImage {
         this.interlace = interlace;
     }
 
-    public Triple[] getPalette() {
+    public Triple<Integer, Integer, Integer>[] getPalette() {
         return this.palette;
     }
 

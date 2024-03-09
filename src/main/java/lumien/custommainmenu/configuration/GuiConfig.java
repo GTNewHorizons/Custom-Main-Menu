@@ -67,9 +67,9 @@ public class GuiConfig {
         }
         this.name = name;
         this.loadAlignments(jsonObject);
-        this.customTexts = new ArrayList();
-        this.customImages = new ArrayList();
-        this.customButtons = new ArrayList();
+        this.customTexts = new ArrayList<>();
+        this.customImages = new ArrayList<>();
+        this.customButtons = new ArrayList<>();
         this.splashText = null;
         this.panorama = null;
         this.background = null;
@@ -80,7 +80,7 @@ public class GuiConfig {
     }
 
     private void loadAlignments(JsonObject jsonObject) {
-        this.alignments = new HashMap();
+        this.alignments = new HashMap<>();
         this.alignments.put("bottom_left", new Alignment(0.0f, 1.0f));
         this.alignments.put("top_left", new Alignment(0.0f, 0.0f));
         this.alignments.put("top_right", new Alignment(1.0f, 0.0f));
@@ -94,7 +94,7 @@ public class GuiConfig {
         if (jsonObject.has("alignments")) {
             JsonObject alignmentObject = (JsonObject) jsonObject.get("alignments");
             Set<Map.Entry<String, JsonElement>> buttons = alignmentObject.entrySet();
-            for (Map.Entry entry : buttons) {
+            for (Map.Entry<String, JsonElement> entry : buttons) {
                 String name = (String) entry.getKey();
                 JsonObject object = (JsonObject) entry.getValue();
                 Alignment a = new Alignment(
@@ -205,7 +205,7 @@ public class GuiConfig {
     private void loadImages(JsonObject jsonObject) {
         JsonObject textElements = jsonObject.get("images").getAsJsonObject();
         Set<Map.Entry<String, JsonElement>> images = textElements.entrySet();
-        for (Map.Entry entry : images) {
+        for (Map.Entry<String, JsonElement> entry : images) {
             String name = (String) entry.getKey();
             JsonElement element = (JsonElement) entry.getValue();
             this.customImages.add(this.getImage((JsonObject) element));
@@ -215,7 +215,7 @@ public class GuiConfig {
     private void loadTexts(JsonObject jsonObject) {
         JsonObject textElements = jsonObject.get("texts").getAsJsonObject();
         Set<Map.Entry<String, JsonElement>> texts = textElements.entrySet();
-        for (Map.Entry entry : texts) {
+        for (Map.Entry<String, JsonElement> entry : texts) {
             String name = (String) entry.getKey();
             JsonElement element = (JsonElement) entry.getValue();
             this.customTexts.add(this.getText(name, (JsonObject) element));
@@ -225,7 +225,7 @@ public class GuiConfig {
     private void loadButtons(JsonObject jsonObject) {
         JsonObject buttonElements = jsonObject.get("buttons").getAsJsonObject();
         Set<Map.Entry<String, JsonElement>> buttons = buttonElements.entrySet();
-        for (Map.Entry entry : buttons) {
+        for (Map.Entry<String, JsonElement> entry : buttons) {
             String name = (String) entry.getKey();
             JsonObject object = (JsonObject) entry.getValue();
             Button b = this.getButton(object);

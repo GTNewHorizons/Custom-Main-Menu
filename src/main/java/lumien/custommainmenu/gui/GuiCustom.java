@@ -102,7 +102,7 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
             this.loadedSplashText = true;
         }
         this.fontRenderer = Minecraft.getMinecraft().fontRenderer;
-        this.textLabels = new ArrayList();
+        this.textLabels = new ArrayList<>();
         this.buttonCounter = 0;
         this.viewportTexture = new DynamicTexture(256, 256);
         this.field_110351_G = this.mc.getTextureManager().getDynamicTextureLocation("background", this.viewportTexture);
@@ -511,7 +511,7 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
                 GuiScreenEvent.ActionPerformedEvent.Pre event = new GuiScreenEvent.ActionPerformedEvent.Pre(
                         new GuiFakeMain(),
                         wrapped.wrappedButton,
-                        new ArrayList());
+                        new ArrayList<>());
                 if (MinecraftForge.EVENT_BUS.post(event)) {
                     return;
                 }
@@ -521,7 +521,7 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
                             new GuiScreenEvent.ActionPerformedEvent.Post(
                                     new GuiFakeMain(),
                                     wrapped.wrappedButton,
-                                    new ArrayList()));
+                                    new ArrayList<>()));
                 }
             }
         } else if (button.id >= 6000 && button instanceof GuiCustomButton) {

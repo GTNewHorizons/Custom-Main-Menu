@@ -13,9 +13,9 @@ public class PNGImage {
     int filter;
     int textureID;
     int interlace;
-    Triple[] palette;
+    Triple<Integer, Integer, Integer>[] palette;
 
-    public void setPalette(Triple[] palette) {
+    public void setPalette(Triple<Integer, Integer, Integer>[] palette) {
         this.palette = palette;
     }
 
@@ -83,7 +83,7 @@ public class PNGImage {
         this.interlace = interlace;
     }
 
-    public Triple[] getPalette() {
+    public Triple<Integer, Integer, Integer>[] getPalette() {
         return this.palette;
     }
 }

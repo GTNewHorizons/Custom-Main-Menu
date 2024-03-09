@@ -60,7 +60,7 @@ public class CMMEventHandler {
         if (event.gui instanceof GuiCustom) {
             GuiCustom custom = (GuiCustom) event.gui;
             if (custom.guiConfig.name.equals("mainmenu")) {
-                event.buttonList = new ArrayList();
+                event.buttonList = new ArrayList<>();
                 this.actualGui = custom;
                 try {
                     this.guiField.set(event, new GuiFakeMain());
@@ -78,7 +78,8 @@ public class CMMEventHandler {
         if (event.gui instanceof GuiFakeMain) {
             GuiFakeMain fake = (GuiFakeMain) event.gui;
             HashMap<Integer, GuiButton> removedButtons = new HashMap<Integer, GuiButton>();
-            Iterator iterator = event.buttonList.iterator();
+            // noinspection unchecked
+            Iterator<GuiButton> iterator = event.buttonList.iterator();
             while (iterator.hasNext()) {
                 Object o = iterator.next();
                 GuiButton b = (GuiButton) o;

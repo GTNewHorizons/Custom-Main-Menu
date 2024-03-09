@@ -75,13 +75,14 @@ public class APNGLoader {
                 continue;
             }
             if (typeString.equals("PLTE")) {
-                Triple[] palette = new Triple[chunkData.length / 3];
+                // noinspection unchecked
+                Triple<Integer, Integer, Integer>[] palette = new Triple[chunkData.length / 3];
                 boolean index = false;
                 for (int i = 0; i < chunkData.length; i += 3) {
                     int red = chunkData[i] & 0xFF;
                     int green = chunkData[i + 1] & 0xFF;
                     int blue = chunkData[i + 2] & 0xFF;
-                    palette[i / 3] = Triple.of((Object) red, (Object) green, (Object) blue);
+                    palette[i / 3] = Triple.of(red, green, blue);
                 }
                 loadedImage.setPalette(palette);
                 continue;
@@ -248,7 +249,7 @@ public class APNGLoader {
         } else if (pngImage.getColorType() == 3) {
             for (i = 0; i < inflated.length; ++i) {
                 for (int a = 1; a < inflated[i].length; ++a) {
-                    Triple triple = pngImage.palette[inflated[i][a] & 0xFF];
+                    Triple<Integer, Integer, Integer> triple = pngImage.palette[inflated[i][a] & 0xFF];
                     byteBuffer.put(((Integer) triple.getLeft()).byteValue());
                     byteBuffer.put(((Integer) triple.getMiddle()).byteValue());
                     byteBuffer.put(((Integer) triple.getRight()).byteValue());

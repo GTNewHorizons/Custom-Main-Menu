@@ -42,7 +42,7 @@ public class GuiCustomLabel extends Gui {
         this.height = this.fontRendererObj.FONT_HEIGHT;
         if (text.name.equals("fml")) {
             StringBuilder string = new StringBuilder();
-            List brandings = FMLCommonHandler.instance().getBrandings(true);
+            List<String> brandings = FMLCommonHandler.instance().getBrandings(true);
             for (int i = 0; i < brandings.size(); ++i) {
                 String brd = (String) brandings.get(i);
                 if (Strings.isNullOrEmpty(brd)) continue;
