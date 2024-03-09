@@ -54,8 +54,8 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
     ArrayList<GuiCustomLabel> textLabels;
     private ITexture[] titlePanoramaPaths;
     public Object beingChecked;
-    public GuiConfig guiConfig;
-    Random rand;
+    public final GuiConfig guiConfig;
+    final Random rand;
     protected DynamicTexture viewportTexture;
     protected ResourceLocation field_110351_G;
     protected String splashText;

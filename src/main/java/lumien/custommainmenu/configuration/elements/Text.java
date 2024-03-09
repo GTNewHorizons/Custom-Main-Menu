@@ -10,9 +10,9 @@ public class Text extends Element {
 
     public IText text;
     public IText hoverText;
-    public String name;
-    public int posX;
-    public int posY;
+    public final String name;
+    public final int posX;
+    public final int posY;
     public int color;
     public int hoverColor;
     public Alignment alignment;

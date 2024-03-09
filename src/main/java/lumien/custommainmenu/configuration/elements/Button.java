@@ -14,10 +14,10 @@ public class Button extends Element {
     public IAction action;
     public IText tooltip;
     public Alignment alignment;
-    public int posX;
-    public int posY;
-    public int width;
-    public int height;
+    public final int posX;
+    public final int posY;
+    public final int width;
+    public final int height;
     public int imageWidth;
     public int imageHeight;
     public ITexture texture;

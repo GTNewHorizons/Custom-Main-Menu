@@ -8,9 +8,9 @@ import lumien.custommainmenu.lib.texts.TextResourceLocation;
 public class SplashText extends Element {
 
     public IText texts;
-    public int posX;
-    public int posY;
-    public int color;
+    public final int posX;
+    public final int posY;
+    public final int color;
     public Alignment alignment;
     public boolean synced;
 

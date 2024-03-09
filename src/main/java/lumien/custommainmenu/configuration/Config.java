@@ -6,7 +6,7 @@ import lumien.custommainmenu.gui.GuiCustom;
 
 public class Config {
 
-    HashMap<String, GuiEntry> guis = new HashMap();
+    final HashMap<String, GuiEntry> guis = new HashMap();
 
     public void addGui(String name, GuiCustom gc) {
         int scale;

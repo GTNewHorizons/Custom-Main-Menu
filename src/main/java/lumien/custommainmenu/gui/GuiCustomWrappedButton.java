@@ -8,7 +8,7 @@ import lumien.custommainmenu.configuration.elements.Button;
 public class GuiCustomWrappedButton extends GuiCustomButton {
 
     GuiButton wrappedButton;
-    public int wrappedButtonID;
+    public final int wrappedButtonID;
 
     public GuiCustomWrappedButton(int buttonId, int wrappedButtonID, Button b) {
         super(buttonId, b);

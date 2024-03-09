@@ -20,7 +20,7 @@ import lumien.custommainmenu.gui.GuiCustom;
 
 public class ConfigurationLoader {
 
-    Config config;
+    final Config config;
 
     public ConfigurationLoader(Config config) {
         this.config = config;

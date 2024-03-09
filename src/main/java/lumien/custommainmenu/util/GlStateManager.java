@@ -12,27 +12,27 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(value = Side.CLIENT)
 public class GlStateManager {
 
-    private static AlphaState alphaState;
-    private static BooleanState lightingState;
-    private static BooleanState[] lightState;
-    private static ColorMaterialState colorMaterialState;
-    private static BlendState blendState;
-    private static DepthState depthState;
-    private static FogState fogState;
-    private static CullState cullState;
-    private static PolygonOffsetState polygonOffsetState;
-    private static ColorLogicState colorLogicState;
-    private static TexGenState texGenState;
-    private static ClearState clearState;
-    private static StencilState stencilState;
-    private static BooleanState normalizeState;
-    private static int activeTextureUnit;
-    private static TextureState[] textureState;
-    private static int activeShadeModel;
-    private static BooleanState rescaleNormalState;
-    private static ColorMask colorMaskState;
-    private static Color colorState;
-    private static Viewport viewportState;
+    private static final AlphaState alphaState;
+    private static final BooleanState lightingState;
+    private static final BooleanState[] lightState;
+    private static final ColorMaterialState colorMaterialState;
+    private static final BlendState blendState;
+    private static final DepthState depthState;
+    private static final FogState fogState;
+    private static final CullState cullState;
+    private static final PolygonOffsetState polygonOffsetState;
+    private static final ColorLogicState colorLogicState;
+    private static final TexGenState texGenState;
+    private static final ClearState clearState;
+    private static final StencilState stencilState;
+    private static final BooleanState normalizeState;
+    private static final int activeTextureUnit;
+    private static final TextureState[] textureState;
+    private static final int activeShadeModel;
+    private static final BooleanState rescaleNormalState;
+    private static final ColorMask colorMaskState;
+    private static final Color colorState;
+    private static final Viewport viewportState;
 
     public static void pushAttrib() {
         GL11.glPushAttrib(8256);
@@ -303,8 +303,8 @@ public class GlStateManager {
     @SideOnly(value = Side.CLIENT)
     static class TexGenCoord {
 
-        public BooleanState field_179067_a;
-        public int field_179065_b;
+        public final BooleanState field_179067_a;
+        public final int field_179065_b;
         public int field_179066_c = -1;
 
         public TexGenCoord(int p_i46254_1_, int p_i46254_2_) {

@@ -7,7 +7,7 @@ import lumien.custommainmenu.gui.GuiCustom;
 
 public class ActionConnectToServer implements IAction {
 
-    String ip;
+    final String ip;
     String serverName;
 
     public ActionConnectToServer(String ip) {

@@ -24,7 +24,7 @@ import lumien.custommainmenu.gui.GuiCustom;
 
 public class ActionOpenGUI implements IAction {
 
-    String guiName;
+    final String guiName;
 
     public ActionOpenGUI(String guiName) {
         this.guiName = guiName;

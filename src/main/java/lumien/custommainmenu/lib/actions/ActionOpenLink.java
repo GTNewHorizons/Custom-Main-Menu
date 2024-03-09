@@ -7,7 +7,7 @@ import lumien.custommainmenu.gui.GuiCustomConfirmOpenLink;
 
 public class ActionOpenLink implements IAction {
 
-    String link;
+    final String link;
 
     public ActionOpenLink(String link) {
         this.link = link;

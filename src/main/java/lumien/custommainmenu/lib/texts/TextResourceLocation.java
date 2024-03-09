@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 public class TextResourceLocation implements IText {
 
     String string;
-    ResourceLocation resourceLocation;
+    final ResourceLocation resourceLocation;
 
     public TextResourceLocation(String resourceString) {
         this.resourceLocation = new ResourceLocation(resourceString);

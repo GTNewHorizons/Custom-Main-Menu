@@ -20,10 +20,10 @@ import lumien.custommainmenu.util.RenderUtil;
 
 public class GuiCustomButton extends GuiButton {
 
-    public Button b;
-    ITexture texture;
-    int normalText;
-    int hoverText;
+    public final Button b;
+    final ITexture texture;
+    final int normalText;
+    final int hoverText;
     boolean hovered;
 
     public GuiCustomButton(int buttonId, Button b) {

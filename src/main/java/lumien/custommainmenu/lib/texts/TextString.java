@@ -2,7 +2,7 @@ package lumien.custommainmenu.lib.texts;
 
 public class TextString implements IText {
 
-    String string;
+    final String string;
 
     public TextString(String string) {
         this.string = string;

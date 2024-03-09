@@ -10,7 +10,7 @@ import lumien.custommainmenu.gui.GuiCustom;
 
 public class ActionOpenFolder implements IAction {
 
-    String folderName;
+    final String folderName;
 
     public ActionOpenFolder(String folderName) {
         this.folderName = folderName;

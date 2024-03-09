@@ -5,10 +5,10 @@ import lumien.custommainmenu.lib.textures.ITexture;
 
 public class Panorama extends Element {
 
-    String images;
-    public ITexture[] locations;
-    public boolean blur;
-    public boolean gradient;
+    final String images;
+    public final ITexture[] locations;
+    public final boolean blur;
+    public final boolean gradient;
     public boolean animate;
     public boolean synced;
     public int position;

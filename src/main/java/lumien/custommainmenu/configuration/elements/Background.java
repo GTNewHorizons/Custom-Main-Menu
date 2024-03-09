@@ -7,7 +7,7 @@ import lumien.custommainmenu.lib.textures.ITexture;
 
 public class Background extends Element {
 
-    public ITexture image;
+    public final ITexture image;
     public MODE mode;
     public boolean ichBinEineSlideshow;
     public Slideshow slideShow;

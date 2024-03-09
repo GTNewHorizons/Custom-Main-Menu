@@ -15,8 +15,8 @@ import lumien.custommainmenu.gui.GuiCustom;
 
 public class ActionLoadWorld implements IAction {
 
-    String dirName;
-    String saveName;
+    final String dirName;
+    final String saveName;
 
     public ActionLoadWorld(String dirName, String saveName) {
         this.dirName = dirName;

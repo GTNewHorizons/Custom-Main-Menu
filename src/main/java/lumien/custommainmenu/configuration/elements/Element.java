@@ -4,7 +4,7 @@ import lumien.custommainmenu.configuration.GuiConfig;
 
 public abstract class Element {
 
-    GuiConfig parent;
+    final GuiConfig parent;
 
     public Element(GuiConfig parent) {
         this.parent = parent;

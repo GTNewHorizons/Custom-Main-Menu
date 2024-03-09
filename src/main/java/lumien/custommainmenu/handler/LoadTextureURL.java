@@ -9,7 +9,7 @@ import lumien.custommainmenu.lib.textures.TextureURL;
 
 public class LoadTextureURL extends Thread {
 
-    TextureURL texture;
+    final TextureURL texture;
 
     public LoadTextureURL(TextureURL texture) {
         this.texture = texture;

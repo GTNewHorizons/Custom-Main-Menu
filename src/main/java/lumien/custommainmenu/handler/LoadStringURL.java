@@ -8,7 +8,7 @@ import lumien.custommainmenu.lib.texts.TextURL;
 
 public class LoadStringURL extends Thread {
 
-    TextURL text;
+    final TextURL text;
 
     public LoadStringURL(TextURL text) {
         this.text = text;

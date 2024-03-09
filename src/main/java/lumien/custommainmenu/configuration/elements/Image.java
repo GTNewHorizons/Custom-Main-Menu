@@ -6,10 +6,10 @@ import lumien.custommainmenu.lib.textures.ITexture;
 
 public class Image extends Element {
 
-    public int posX;
-    public int posY;
-    public int width;
-    public int height;
+    public final int posX;
+    public final int posY;
+    public final int width;
+    public final int height;
     public ITexture image;
     public ITexture hoverImage;
     public Alignment alignment;

@@ -19,13 +19,13 @@ import lumien.custommainmenu.util.GlStateManager;
 
 public class GuiCustomLabel extends Gui {
 
-    Text text;
-    int posX;
-    int posY;
-    FontRenderer fontRendererObj;
-    int width;
-    int height;
-    GuiCustom parent;
+    final Text text;
+    final int posX;
+    final int posY;
+    final FontRenderer fontRendererObj;
+    final int width;
+    final int height;
+    final GuiCustom parent;
     boolean hovered;
 
     public GuiCustomLabel(GuiCustom customGUI, Text text, int posX, int posY) {
