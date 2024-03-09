@@ -41,14 +41,14 @@ public class GuiCustomLabel extends Gui {
         this.width = this.fontRendererObj.getStringWidth(text.text.get());
         this.height = this.fontRendererObj.FONT_HEIGHT;
         if (text.name.equals("fml")) {
-            String string = "";
+            StringBuilder string = new StringBuilder();
             List brandings = FMLCommonHandler.instance().getBrandings(true);
             for (int i = 0; i < brandings.size(); ++i) {
                 String brd = (String) brandings.get(i);
                 if (Strings.isNullOrEmpty(brd)) continue;
-                string = string + brd + (i < brandings.size() - 1 ? "\n" : "");
+                string.append(brd).append(i < brandings.size() - 1 ? "\n" : "");
             }
-            this.text.text = this.text.hoverText = new TextString(string);
+            this.text.text = this.text.hoverText = new TextString(string.toString());
         }
     }
 
