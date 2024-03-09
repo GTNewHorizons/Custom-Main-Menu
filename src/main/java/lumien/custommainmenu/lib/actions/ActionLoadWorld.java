@@ -1,7 +1,7 @@
 package lumien.custommainmenu.lib.actions;
 
 import java.io.File;
-import java.io.FileInputStream;
+import java.nio.file.Files;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompressedStreamTools;
@@ -28,10 +28,11 @@ public class ActionLoadWorld implements IAction {
         NBTTagCompound leveldat;
         File dir = new File(FMLClientHandler.instance().getSavesDir(), this.dirName);
         try {
-            leveldat = CompressedStreamTools.readCompressed(new FileInputStream(new File(dir, "level.dat")));
+            leveldat = CompressedStreamTools.readCompressed(Files.newInputStream(new File(dir, "level.dat").toPath()));
         } catch (Exception e) {
             try {
-                leveldat = CompressedStreamTools.readCompressed(new FileInputStream(new File(dir, "level.dat_old")));
+                leveldat = CompressedStreamTools
+                        .readCompressed(Files.newInputStream(new File(dir, "level.dat_old").toPath()));
             } catch (Exception e1) {
                 FMLLog.warning(
                         "There appears to be a problem loading the save %s, both level files are unreadable.",
