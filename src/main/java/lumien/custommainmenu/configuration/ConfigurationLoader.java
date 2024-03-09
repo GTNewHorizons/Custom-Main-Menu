@@ -26,7 +26,7 @@ public class ConfigurationLoader {
         this.config = config;
     }
 
-    public void load() throws Exception {
+    public void load() {
         JsonReader reader;
         File[] jsonFiles;
         JsonObject jsonObject;
