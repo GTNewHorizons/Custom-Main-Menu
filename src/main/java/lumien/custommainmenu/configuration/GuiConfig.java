@@ -370,7 +370,7 @@ public class GuiConfig {
             JsonArray array = jsonElement.getAsJsonArray();
             return array.get(rng.nextInt(array.size())).getAsString();
         }
-        CustomMainMenu.INSTANCE.logger.log(Level.ERROR, "Error getting random value out of " + jsonElement.toString());
+        CustomMainMenu.INSTANCE.logger.log(Level.ERROR, "Error getting random value out of " + jsonElement);
         return "ERROR";
     }
 
