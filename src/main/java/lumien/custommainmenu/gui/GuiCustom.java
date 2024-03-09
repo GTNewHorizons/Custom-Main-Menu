@@ -1,5 +1,8 @@
 package lumien.custommainmenu.gui;
 
+import static java.util.Calendar.DATE;
+import static java.util.Calendar.MONTH;
+
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -105,15 +108,15 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
         this.field_110351_G = this.mc.getTextureManager().getDynamicTextureLocation("background", this.viewportTexture);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        if (calendar.get(2) + 1 == 11 && calendar.get(5) == 9) {
+        if (calendar.get(MONTH) + 1 == 11 && calendar.get(DATE) == 9) {
             this.splashText = "Happy birthday, ez!";
-        } else if (calendar.get(2) + 1 == 6 && calendar.get(5) == 1) {
+        } else if (calendar.get(MONTH) + 1 == 6 && calendar.get(DATE) == 1) {
             this.splashText = "Happy birthday, Notch!";
-        } else if (calendar.get(2) + 1 == 12 && calendar.get(5) == 24) {
+        } else if (calendar.get(MONTH) + 1 == 12 && calendar.get(DATE) == 24) {
             this.splashText = "Merry X-mas!";
-        } else if (calendar.get(2) + 1 == 1 && calendar.get(5) == 1) {
+        } else if (calendar.get(MONTH) + 1 == 1 && calendar.get(DATE) == 1) {
             this.splashText = "Happy new year!";
-        } else if (calendar.get(2) + 1 == 10 && calendar.get(5) == 31) {
+        } else if (calendar.get(MONTH) + 1 == 10 && calendar.get(DATE) == 31) {
             this.splashText = "OOoooOOOoooo! Spooky!";
         }
         int idCounter = 6000;
