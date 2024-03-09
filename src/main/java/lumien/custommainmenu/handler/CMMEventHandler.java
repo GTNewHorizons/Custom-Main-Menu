@@ -44,8 +44,7 @@ public class CMMEventHandler {
             if (customMainMenu != null) {
                 event.gui = customMainMenu;
             }
-        } else if (event.gui instanceof GuiCustom) {
-            GuiCustom custom = (GuiCustom) event.gui;
+        } else if (event.gui instanceof GuiCustom custom) {
             GuiCustom target = CustomMainMenu.INSTANCE.config.getGUI(custom.guiConfig.name);
             if (target != custom) {
                 event.gui = target;
@@ -55,8 +54,7 @@ public class CMMEventHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void initGuiPostEarly(GuiScreenEvent.InitGuiEvent.Post event) {
-        if (event.gui instanceof GuiCustom) {
-            GuiCustom custom = (GuiCustom) event.gui;
+        if (event.gui instanceof GuiCustom custom) {
             if (custom.guiConfig.name.equals("mainmenu")) {
                 event.buttonList = new ArrayList<>();
                 this.actualGui = custom;
@@ -72,7 +70,6 @@ public class CMMEventHandler {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void initGuiPost(GuiScreenEvent.InitGuiEvent.Post event) {
         if (event.gui instanceof GuiFakeMain) {
-            GuiFakeMain fake = (GuiFakeMain) event.gui;
             HashMap<Integer, GuiButton> removedButtons = new HashMap<>();
             // noinspection unchecked
             Iterator<GuiButton> iterator = event.buttonList.iterator();
@@ -98,8 +95,7 @@ public class CMMEventHandler {
                         "Found unsupported button, use a wrapped button to config this. (" + b.id + ")");
             }
             for (GuiButton o : this.actualGui.getButtonList()) {
-                if (!(o instanceof GuiCustomWrappedButton)) continue;
-                GuiCustomWrappedButton b = (GuiCustomWrappedButton) o;
+                if (!(o instanceof GuiCustomWrappedButton b)) continue;
                 CustomMainMenu.INSTANCE.logger.log(
                         Level.DEBUG,
                         "Initiating Wrapped Button " + b.wrappedButtonID

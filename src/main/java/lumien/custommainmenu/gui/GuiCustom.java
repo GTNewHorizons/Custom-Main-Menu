@@ -145,13 +145,11 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
     public void confirmClicked(boolean result, int id) {
         if (result) {
             String link = null;
-            if (this.beingChecked instanceof Button) {
-                Button button = (Button) this.beingChecked;
+            if (this.beingChecked instanceof Button button) {
                 if (button.action instanceof ActionOpenLink) {
                     link = ((ActionOpenLink) button.action).getLink();
                 }
-            } else if (this.beingChecked instanceof Text) {
-                Text text = (Text) this.beingChecked;
+            } else if (this.beingChecked instanceof Text text) {
                 if (text.action instanceof ActionOpenLink) {
                     link = ((ActionOpenLink) text.action).getLink();
                 }
@@ -504,8 +502,7 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
     }
 
     protected void actionPerformed(GuiButton button) {
-        if (button instanceof GuiCustomWrappedButton && this.guiConfig.name.equals("mainmenu")) {
-            GuiCustomWrappedButton wrapped = (GuiCustomWrappedButton) button;
+        if (button instanceof GuiCustomWrappedButton wrapped && this.guiConfig.name.equals("mainmenu")) {
             if (wrapped.wrappedButton != null) {
                 GuiScreenEvent.ActionPerformedEvent.Pre event = new GuiScreenEvent.ActionPerformedEvent.Pre(
                         new GuiFakeMain(),
@@ -523,8 +520,7 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
                                     new ArrayList<>()));
                 }
             }
-        } else if (button.id >= 6000 && button instanceof GuiCustomButton) {
-            GuiCustomButton custom = (GuiCustomButton) button;
+        } else if (button.id >= 6000 && button instanceof GuiCustomButton custom) {
             if (custom.b.action != null) {
                 custom.b.action.perform(custom.b, this);
             }
