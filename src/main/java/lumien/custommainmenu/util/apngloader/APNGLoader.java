@@ -196,7 +196,7 @@ public class APNGLoader {
         }
         for (int line = 0; line < inflated.length; ++line) {
             byte filter = inflated[line][0];
-            block16: for (int t = 1; t < inflated[line].length; ++t) {
+            for (int t = 1; t < inflated[line].length; ++t) {
                 int data = inflated[line][t] & 0xFF;
                 int a = 0;
                 if (t > samples * pngImage.bitDepth / 8) {
@@ -317,7 +317,7 @@ public class APNGLoader {
         byte[] magic = new byte[8];
         inputStream.read(magic);
         boolean isPNG = true;
-        block10: for (int byteIndex = 0; byteIndex < magic.length && isPNG; ++byteIndex) {
+        for (int byteIndex = 0; byteIndex < magic.length && isPNG; ++byteIndex) {
             byte b = magic[byteIndex];
             switch (byteIndex) {
                 case 0: {
