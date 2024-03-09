@@ -45,8 +45,7 @@ public class Slideshow extends Element {
         float counterProgress = ((float) this.counter + partial) % (float) (this.displayDuration + this.fadeDuration)
                 - (float) this.displayDuration;
         float durationTeiler = 1.0f / (float) this.fadeDuration;
-        float alpha = durationTeiler * counterProgress;
-        return alpha;
+        return durationTeiler * counterProgress;
     }
 
     public ITexture getCurrentResource1() {
