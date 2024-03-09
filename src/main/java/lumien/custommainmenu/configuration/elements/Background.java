@@ -28,6 +28,6 @@ public class Background extends Element {
         FILL,
         STRETCH,
         CENTER,
-        TILE;
+        TILE
     }
 }
