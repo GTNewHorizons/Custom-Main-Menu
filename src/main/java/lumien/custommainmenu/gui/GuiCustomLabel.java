@@ -44,7 +44,7 @@ public class GuiCustomLabel extends Gui {
             StringBuilder string = new StringBuilder();
             List<String> brandings = FMLCommonHandler.instance().getBrandings(true);
             for (int i = 0; i < brandings.size(); ++i) {
-                String brd = (String) brandings.get(i);
+                String brd = brandings.get(i);
                 if (Strings.isNullOrEmpty(brd)) continue;
                 string.append(brd).append(i < brandings.size() - 1 ? "\n" : "");
             }

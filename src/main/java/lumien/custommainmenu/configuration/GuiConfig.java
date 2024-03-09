@@ -95,7 +95,7 @@ public class GuiConfig {
             JsonObject alignmentObject = (JsonObject) jsonObject.get("alignments");
             Set<Map.Entry<String, JsonElement>> buttons = alignmentObject.entrySet();
             for (Map.Entry<String, JsonElement> entry : buttons) {
-                String name = (String) entry.getKey();
+                String name = entry.getKey();
                 JsonObject object = (JsonObject) entry.getValue();
                 Alignment a = new Alignment(
                         object.get("factorWidth").getAsFloat(),
@@ -206,8 +206,8 @@ public class GuiConfig {
         JsonObject textElements = jsonObject.get("images").getAsJsonObject();
         Set<Map.Entry<String, JsonElement>> images = textElements.entrySet();
         for (Map.Entry<String, JsonElement> entry : images) {
-            String name = (String) entry.getKey();
-            JsonElement element = (JsonElement) entry.getValue();
+            String name = entry.getKey();
+            JsonElement element = entry.getValue();
             this.customImages.add(this.getImage((JsonObject) element));
         }
     }
@@ -216,8 +216,8 @@ public class GuiConfig {
         JsonObject textElements = jsonObject.get("texts").getAsJsonObject();
         Set<Map.Entry<String, JsonElement>> texts = textElements.entrySet();
         for (Map.Entry<String, JsonElement> entry : texts) {
-            String name = (String) entry.getKey();
-            JsonElement element = (JsonElement) entry.getValue();
+            String name = entry.getKey();
+            JsonElement element = entry.getValue();
             this.customTexts.add(this.getText(name, (JsonObject) element));
         }
     }
@@ -226,10 +226,10 @@ public class GuiConfig {
         JsonObject buttonElements = jsonObject.get("buttons").getAsJsonObject();
         Set<Map.Entry<String, JsonElement>> buttons = buttonElements.entrySet();
         for (Map.Entry<String, JsonElement> entry : buttons) {
-            String name = (String) entry.getKey();
+            String name = entry.getKey();
             JsonObject object = (JsonObject) entry.getValue();
             Button b = this.getButton(object);
-            b.name = (String) entry.getKey();
+            b.name = entry.getKey();
             this.customButtons.add(b);
         }
     }

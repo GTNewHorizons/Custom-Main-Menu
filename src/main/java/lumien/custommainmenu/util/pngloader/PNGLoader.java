@@ -177,9 +177,9 @@ public class PNGLoader {
             for (i = 0; i < inflated.length; ++i) {
                 for (int a = 1; a < inflated[i].length; ++a) {
                     Triple<Integer, Integer, Integer> triple = pngImage.palette[inflated[i][a] & 0xFF];
-                    byteBuffer.put(((Integer) triple.getLeft()).byteValue());
-                    byteBuffer.put(((Integer) triple.getMiddle()).byteValue());
-                    byteBuffer.put(((Integer) triple.getRight()).byteValue());
+                    byteBuffer.put(triple.getLeft().byteValue());
+                    byteBuffer.put(triple.getMiddle().byteValue());
+                    byteBuffer.put(triple.getRight().byteValue());
                 }
             }
         }
@@ -258,9 +258,9 @@ public class PNGLoader {
                     for (int i = 1; i < bytesPerScanLine; ++i) {
                         Triple<Integer, Integer, Integer> color = palette[uncompressedImageData[scanLine
                                 * bytesPerScanLine + i] & 0xFF];
-                        byteBuffer.put(((Integer) color.getLeft()).byteValue());
-                        byteBuffer.put(((Integer) color.getMiddle()).byteValue());
-                        byteBuffer.put(((Integer) color.getRight()).byteValue());
+                        byteBuffer.put(color.getLeft().byteValue());
+                        byteBuffer.put(color.getMiddle().byteValue());
+                        byteBuffer.put(color.getRight().byteValue());
                     }
                     continue;
                 }

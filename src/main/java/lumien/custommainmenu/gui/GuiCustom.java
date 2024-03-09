@@ -13,7 +13,6 @@ import java.util.Random;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiYesNoCallback;
@@ -277,14 +276,14 @@ public class GuiCustom extends GuiScreen implements GuiYesNoCallback {
         }
         for (w = 0; w < this.buttonList.size(); ++w) {
             GlStateManager.resetColor();
-            ((GuiButton) this.buttonList.get(w)).drawButton(this.mc, mouseX, mouseY);
+            this.buttonList.get(w).drawButton(this.mc, mouseX, mouseY);
         }
         for (Object o : this.buttonList) {
             if (!(o instanceof GuiCustomButton)) continue;
             ((GuiCustomButton) o).drawTooltip(this.mc, mouseX, mouseY);
         }
         for (w = 0; w < this.labelList.size(); ++w) {
-            ((GuiLabel) this.labelList.get(w)).func_146159_a(this.mc, mouseX, mouseY);
+            this.labelList.get(w).func_146159_a(this.mc, mouseX, mouseY);
         }
     }
 

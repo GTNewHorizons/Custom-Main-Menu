@@ -250,9 +250,9 @@ public class APNGLoader {
             for (i = 0; i < inflated.length; ++i) {
                 for (int a = 1; a < inflated[i].length; ++a) {
                     Triple<Integer, Integer, Integer> triple = pngImage.palette[inflated[i][a] & 0xFF];
-                    byteBuffer.put(((Integer) triple.getLeft()).byteValue());
-                    byteBuffer.put(((Integer) triple.getMiddle()).byteValue());
-                    byteBuffer.put(((Integer) triple.getRight()).byteValue());
+                    byteBuffer.put(triple.getLeft().byteValue());
+                    byteBuffer.put(triple.getMiddle().byteValue());
+                    byteBuffer.put(triple.getRight().byteValue());
                 }
             }
         }
