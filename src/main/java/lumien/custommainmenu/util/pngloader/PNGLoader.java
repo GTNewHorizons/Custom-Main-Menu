@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.zip.DataFormatException;
 import java.util.zip.Inflater;
 
@@ -33,7 +34,7 @@ public class PNGLoader {
             int chunkLength = ByteBuffer.wrap(length).getInt();
             byte[] type = new byte[4];
             inputStream.read(type);
-            String typeString = new String(type, "US-ASCII");
+            String typeString = new String(type, StandardCharsets.US_ASCII);
             System.out.println("Chunk-Type: " + typeString);
             if (typeString.equals("IEND")) break;
             boolean critical = Character.isUpperCase(typeString.charAt(0));
