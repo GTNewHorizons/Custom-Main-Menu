@@ -32,9 +32,7 @@ public class CMMEventHandler {
         try {
             this.guiField = GuiScreenEvent.class.getDeclaredField("gui");
             this.guiField.setAccessible(true);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (SecurityException e) {
+        } catch (NoSuchFieldException | SecurityException e) {
             e.printStackTrace();
         }
     }
@@ -64,9 +62,7 @@ public class CMMEventHandler {
                 this.actualGui = custom;
                 try {
                     this.guiField.set(event, new GuiFakeMain());
-                } catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
+                } catch (IllegalArgumentException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
             }

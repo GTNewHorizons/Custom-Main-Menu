@@ -46,10 +46,6 @@ public class ConfigurationLoader {
                 output = new FileOutputStream(mainmenuConfig);
                 input = this.getClass().getResourceAsStream("/assets/custommainmenu/mainmenu_default.json");
                 ByteStreams.copy(input, output);
-            } catch (FileNotFoundException e1) {
-                e1.printStackTrace();
-                IOUtils.closeQuietly(output);
-                IOUtils.closeQuietly(input);
             } catch (IOException e) {
                 e.printStackTrace();
                 IOUtils.closeQuietly(output);
