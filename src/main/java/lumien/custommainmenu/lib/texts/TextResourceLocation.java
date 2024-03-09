@@ -23,7 +23,7 @@ public class TextResourceLocation implements IText {
         if (this.string == null) {
             return "";
         }
-        if (this.string.equals("")) {
+        if (this.string.isEmpty()) {
             IResource resource = null;
             try {
                 resource = Minecraft.getMinecraft().getResourceManager().getResource(this.resourceLocation);
