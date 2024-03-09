@@ -8,7 +8,7 @@ public class LogicUtil {
 
     public static ArrayList<String> getTooltip(String tooltipString) {
         String[] split;
-        ArrayList<String> tooltip = new ArrayList<String>();
+        ArrayList<String> tooltip = new ArrayList<>();
         for (String s : split = tooltipString.split("\n")) {
             tooltip.add(StringReplacer.replacePlaceholders(s));
         }

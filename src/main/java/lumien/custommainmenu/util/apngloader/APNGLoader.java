@@ -32,7 +32,7 @@ public class APNGLoader {
         }
         APNGImage loadedImage = new APNGImage();
         boolean finished = false;
-        ArrayList<Frame> frames = new ArrayList<Frame>();
+        ArrayList<Frame> frames = new ArrayList<>();
         Frame currentFrame = null;
         ByteArrayOutputStream currentImageData = new ByteArrayOutputStream();
         int currentSequenceNumber = -1;

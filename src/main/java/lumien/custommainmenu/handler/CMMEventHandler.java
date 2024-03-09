@@ -73,7 +73,7 @@ public class CMMEventHandler {
     public void initGuiPost(GuiScreenEvent.InitGuiEvent.Post event) {
         if (event.gui instanceof GuiFakeMain) {
             GuiFakeMain fake = (GuiFakeMain) event.gui;
-            HashMap<Integer, GuiButton> removedButtons = new HashMap<Integer, GuiButton>();
+            HashMap<Integer, GuiButton> removedButtons = new HashMap<>();
             // noinspection unchecked
             Iterator<GuiButton> iterator = event.buttonList.iterator();
             while (iterator.hasNext()) {
