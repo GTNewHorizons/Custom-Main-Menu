@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import net.minecraft.util.StatCollector;
+
 import org.apache.logging.log4j.Level;
 
 import com.google.gson.JsonArray;
@@ -32,6 +34,7 @@ import lumien.custommainmenu.lib.actions.IAction;
 import lumien.custommainmenu.lib.texts.IText;
 import lumien.custommainmenu.lib.texts.TextResourceLocation;
 import lumien.custommainmenu.lib.texts.TextString;
+import lumien.custommainmenu.lib.texts.TextTranslatable;
 import lumien.custommainmenu.lib.texts.TextURL;
 import lumien.custommainmenu.lib.textures.ITexture;
 import lumien.custommainmenu.lib.textures.TextureResourceLocation;
@@ -425,6 +428,9 @@ public class GuiConfig {
         if (textString.startsWith("file:")) {
             String resource = textString.substring(5);
             return new TextResourceLocation(resource);
+        }
+        if (StatCollector.canTranslate(textString)) {
+            return new TextTranslatable(textString);
         }
         return new TextString(textString);
     }

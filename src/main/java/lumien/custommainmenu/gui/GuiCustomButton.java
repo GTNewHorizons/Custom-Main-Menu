@@ -7,12 +7,10 @@ import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 
 import lumien.custommainmenu.configuration.elements.Button;
 import lumien.custommainmenu.lib.StringReplacer;
-import lumien.custommainmenu.lib.texts.TextString;
 import lumien.custommainmenu.lib.textures.ITexture;
 import lumien.custommainmenu.util.GlStateManager;
 import lumien.custommainmenu.util.LogicUtil;
@@ -32,8 +30,6 @@ public class GuiCustomButton extends GuiButton {
         this.normalText = b.normalTextColor;
         this.hoverText = b.hoverTextColor;
         this.b = b;
-        this.b.text = new TextString(I18n.format(StringReplacer.replacePlaceholders(b.text.get())));
-        this.b.hoverText = new TextString(I18n.format(StringReplacer.replacePlaceholders(b.hoverText.get())));
     }
 
     public void drawTooltip(Minecraft mc, int mouseX, int mouseY) {
@@ -115,7 +111,7 @@ public class GuiCustomButton extends GuiButton {
     }
 
     private String getDrawString() {
-        String text = this.hovered ? this.b.hoverText.get() : this.b.text.get();
+        String text = StringReplacer.replacePlaceholders(this.hovered ? this.b.hoverText.get() : this.b.text.get());
 
         for (String dynamicPlaceholder : StringReplacer.dynamicPlaceholders) {
             if (text.contains(dynamicPlaceholder)) {

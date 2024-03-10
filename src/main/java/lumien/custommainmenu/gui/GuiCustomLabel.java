@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 
 import com.google.common.base.Strings;
@@ -30,9 +29,6 @@ public class GuiCustomLabel extends Gui {
 
     public GuiCustomLabel(GuiCustom customGUI, Text text, int posX, int posY) {
         this.text = text;
-        this.text.text = new TextString(I18n.format(StringReplacer.replacePlaceholders(this.text.text.get())));
-        this.text.hoverText = new TextString(
-                I18n.format(StringReplacer.replacePlaceholders(this.text.hoverText.get())));
         this.posX = posX;
         this.posY = posY;
         this.parent = customGUI;
@@ -90,7 +86,8 @@ public class GuiCustomLabel extends Gui {
     }
 
     private String getDrawString() {
-        String text = this.hovered ? this.text.hoverText.get() : this.text.text.get();
+        String text = StringReplacer
+                .replacePlaceholders(this.hovered ? this.text.hoverText.get() : this.text.text.get());
 
         for (String dynamicPlaceholder : StringReplacer.dynamicPlaceholders) {
             if (text.contains(dynamicPlaceholder)) {
