@@ -27,13 +27,7 @@ public class ConfigurationLoader {
     }
 
     public void load() {
-        JsonReader reader;
-        File[] jsonFiles;
-        JsonObject jsonObject;
         File mainmenuConfig;
-        String name;
-        JsonElement jsonElement;
-        GuiConfig guiConfig;
         JsonParser jsonParser = new JsonParser();
         File configFolder = new File(CustomMainMenu.INSTANCE.configFolder, "CustomMainMenu");
         if (!configFolder.exists()) {
@@ -54,19 +48,19 @@ public class ConfigurationLoader {
             IOUtils.closeQuietly(output);
             IOUtils.closeQuietly(input);
         }
-        for (File guiFile : jsonFiles = configFolder.listFiles()) {
-            if (!guiFile.getName().equals("mainmenu.json")) continue;
-            guiConfig = new GuiConfig();
-            name = guiFile.getName().replace(".json", "");
-            reader = null;
+        for (File guiFile : configFolder.listFiles()) {
+            if (!guiFile.getName().endsWith(".json")) continue;
+            GuiConfig guiConfig = new GuiConfig();
+            String name = guiFile.getName().replace(".json", "");
+            JsonReader reader = null;
             try {
                 reader = new JsonReader(new FileReader(guiFile));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
             try {
-                jsonElement = jsonParser.parse(reader);
-                jsonObject = jsonElement.getAsJsonObject();
+                JsonElement jsonElement = jsonParser.parse(reader);
+                JsonObject jsonObject = jsonElement.getAsJsonObject();
                 guiConfig.load(name, jsonObject);
             } catch (Exception e) {
                 try {
@@ -83,37 +77,6 @@ public class ConfigurationLoader {
                 io.printStackTrace();
             }
             this.config.addGui(guiConfig.name, new GuiCustom(guiConfig));
-        }
-        for (File guiFile : jsonFiles) {
-            if (!guiFile.getName().equals("mainmenu.json") && guiFile.getName().endsWith(".json")) {
-                guiConfig = new GuiConfig();
-                name = guiFile.getName().replace(".json", "");
-                reader = null;
-                try {
-                    reader = new JsonReader(new FileReader(guiFile));
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    jsonElement = jsonParser.parse(reader);
-                    jsonObject = jsonElement.getAsJsonObject();
-                    guiConfig.load(name, jsonObject);
-                } catch (Exception e) {
-                    try {
-                        reader.close();
-                        throw e;
-                    } catch (IOException io) {
-                        io.printStackTrace();
-                    }
-                    throw e;
-                }
-                try {
-                    reader.close();
-                } catch (IOException io) {
-                    io.printStackTrace();
-                }
-                this.config.addGui(guiConfig.name, new GuiCustom(guiConfig));
-            }
         }
     }
 }
