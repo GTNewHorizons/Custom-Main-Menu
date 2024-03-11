@@ -1,7 +1,7 @@
 {
 	"modListVersion": 2,
 	"modList": [{
-		"modid": ${modId},
+		"modid": "${modId}",
 		"name": "${modName}",
 		"description": "Allows you to edit the mainmenu using json",
 		"version": "${modVersion}",
