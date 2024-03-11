@@ -1,11 +1,11 @@
 {
 	"modListVersion": 2,
 	"modList": [{
-		"modid": "custommainmenu",
-		"name": "Custom Main Menu",
+		"modid": ${modId},
+		"name": "${modName}",
 		"description": "Allows you to edit the mainmenu using json",
-		"version": "1.11.1",
-		"mcversion": "1.7.10",
+		"version": "${modVersion}",
+		"mcversion": "${minecraftVersion}",
 		"url": "",
 		"updateUrl": "",
 		"authorList": ["lumien"],
