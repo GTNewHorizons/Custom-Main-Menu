@@ -29,7 +29,6 @@ public class Slideshow extends Element {
     public void shuffle() {
         List<ITexture> list = Arrays.asList(this.ressources);
         Collections.shuffle(list);
-        this.ressources = (ITexture[]) list.toArray();
     }
 
     public void update() {
