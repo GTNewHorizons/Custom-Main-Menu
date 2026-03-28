@@ -30,6 +30,7 @@ import lumien.custommainmenu.lib.actions.ActionOpenGUI;
 import lumien.custommainmenu.lib.actions.ActionOpenLink;
 import lumien.custommainmenu.lib.actions.ActionQuit;
 import lumien.custommainmenu.lib.actions.ActionRefresh;
+import lumien.custommainmenu.lib.actions.ActionSendIMC;
 import lumien.custommainmenu.lib.actions.IAction;
 import lumien.custommainmenu.lib.texts.IText;
 import lumien.custommainmenu.lib.texts.TextResourceLocation;
@@ -409,6 +410,11 @@ public class GuiConfig {
         }
         if (actionType.equalsIgnoreCase("openFolder")) {
             return new ActionOpenFolder(actionObject.get("folderName").getAsString());
+        }
+        if (actionType.equalsIgnoreCase("sendIMC")) {
+            return new ActionSendIMC(
+                    actionObject.get("modid").getAsString(),
+                    actionObject.get("message").getAsString());
         }
         return null;
     }
