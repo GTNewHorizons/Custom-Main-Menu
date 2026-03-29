@@ -1,11 +1,12 @@
 package lumien.custommainmenu.lib.actions;
 
-import cpw.mods.fml.common.event.FMLInterModComms;
-import lumien.custommainmenu.CustomMainMenu;
+import net.minecraftforge.common.MinecraftForge;
+
+import lumien.custommainmenu.events.SendIMCEvent;
 import lumien.custommainmenu.gui.GuiCustom;
 
 /**
- * CMM action that sends an IMC runtime message to a target mod when performed. Config: {@code "action": {"type":
+ * CMM action that fires a {@link SendIMCEvent} on the Forge event bus when performed. Config: {@code "action": {"type":
  * "sendIMC", "modid": "targetmodid", "message": "someKey"}}
  */
 public class ActionSendIMC implements IAction {
@@ -20,6 +21,6 @@ public class ActionSendIMC implements IAction {
 
     @Override
     public void perform(Object source, GuiCustom menu) {
-        FMLInterModComms.sendRuntimeMessage(CustomMainMenu.INSTANCE, targetModId, message, "");
+        MinecraftForge.EVENT_BUS.post(new SendIMCEvent(targetModId, message));
     }
 }
